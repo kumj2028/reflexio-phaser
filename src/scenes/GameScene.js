@@ -29,7 +29,7 @@ const GRAVITY_SCALE = 0.00005;
 // Target ~3 tiles (97.5 px) peak height: v0 = sqrt(2 * 0.136 * 97.5) = 5.15 px/frame.
 // Original PLAYER_MAX_Y_VEL cap (5 m/s = 4.17 px/frame) limits to ~2 tiles; user
 // recalls 3, so we use the uncapped value computed from the target height.
-const JUMP_SPEED = 5.15; // px/frame — ~3 tile peak height
+const JUMP_SPEED = 4.635; // px/frame — ~3 tile peak height
 
 // Direction transformation tables for each reflection type.
 // Horizontal reflection (across horizontal line) flips Y → Up↔Down.
@@ -489,20 +489,21 @@ export class GameScene extends Phaser.Scene {
     const alwaysV = new Set(level.verticalLines);
     const alwaysD = new Set(level.diagonalLines);
 
-    // Diagonal icons sit on the right border. p=1 is the main diagonal (top-left →
-    // bottom-right, angle 45°); p=-1 is the anti-diagonal (angle -45° / 135°).
-    const rightX = ox + (dims.numCols - 0.5) * tileW;
-    const diagY  = (p) => p === 1
-      ? oy + dims.numRows * 0.3 * tileH
-      : oy + dims.numRows * 0.7 * tileH;
-    const diagAngle = (p) => p === 1 ? 45 : -45;
+    // Diagonal icons sit on the left border at the corners.
+    // p=1  (main diagonal, top-left→bottom-right): bottom-left corner, canopy points up-right   (45°).
+    // p=-1 (anti-diagonal, top-right→bottom-left): top-left corner,    canopy points down-right (135°).
+
+    const diagY     = (p) => p === 1
+      ? oy + tileH / 2                        // top-left
+      : oy + (dims.numRows - 0.5) * tileH;   // bottom-left
+    const diagAngle = (p) => p === 1 ? 135 : 45;
 
     for (const p of alwaysH)
       makeIcon(leftX, oy + p * tileH, 'reflectionCircle', 90, true, 'HORIZONTAL', p);
     for (const p of alwaysV)
       makeIcon(ox + p * tileW, bottomY, 'reflectionCircle', 0, true, 'VERTICAL', p);
     for (const p of alwaysD)
-      makeIcon(rightX, diagY(p), 'reflectionCircle', diagAngle(p), true, 'DIAGONAL', p);
+      makeIcon(leftX, diagY(p), 'reflectionCircle', diagAngle(p), true, 'DIAGONAL', p);
 
     // Switch-controlled indicators: created hidden, shown only while switch is on.
     for (const obj of level.objects) {
@@ -523,7 +524,7 @@ export class GameScene extends Phaser.Scene {
       for (const p of obj.diagonalLines) {
         if (alwaysD.has(p)) continue;
         obj.indicatorImages.push(
-          makeIcon(rightX, diagY(p), 'reflectionCircleSwitch', diagAngle(p), false, 'DIAGONAL', p).setVisible(false)
+          makeIcon(leftX, diagY(p), 'reflectionCircleSwitch', diagAngle(p), false, 'DIAGONAL', p).setVisible(false)
         );
       }
     }
