@@ -9,6 +9,8 @@ import { SPRITESHEET_REGISTRY } from '../loader/spritesheetRegistry.js';
 import { LEVEL_LIST } from '../loader/levelList.js';
 import { progress } from '../state/ProgressState.js';
 import { achievements } from '../state/AchievementState.js';
+import { EyeTracker } from '../eye/EyeTracker.js';
+import { eyeTracking } from '../state/EyeTrackingState.js';
 
 // Physics constants ported from Player.cs / PlayerController.cs.
 // Converted to pixel-space: multiply original m/s or N values by SCALE (50 px/m).
@@ -146,6 +148,19 @@ export class GameScene extends Phaser.Scene {
 
     this.buildReflectionIndicators(level);
 
+    // Press any switch that a block is already resting on at level start.
+    // collisionstart never fires for bodies that begin the level already overlapping.
+    for (const sw of level.objects) {
+      if (sw.typeName !== 'Switch' || !sw.body || sw.isPressed) continue;
+      for (const blk of level.objects) {
+        if (blk.typeName !== 'Block' || !blk.body) continue;
+        if (blk.discX === sw.discX && blk.discY === sw.discY) {
+          this.pressSwitch(sw, blk.body);
+          break;
+        }
+      }
+    }
+
     // Reflection line overlay — created after all objects so it sits on top in the display list.
     this.reflectionLineGfx = this.add.graphics().setDepth(50);
 
@@ -201,7 +216,30 @@ export class GameScene extends Phaser.Scene {
 
     this._achListener = (ach) => this.showAchievementNotification(ach);
     achievements.onUnlock(this._achListener);
-    this.events.once('shutdown', () => achievements.offUnlock(this._achListener));
+    this.events.once('shutdown', () => {
+      achievements.offUnlock(this._achListener);
+      this._gazeTracker?.stop();
+      this._gazeDebugText?.destroy();
+    });
+
+    // Eye tracking
+    this._indicatorData   = [];
+    this._gazeBuffer      = []; // rolling window of recent canvas-space readings
+    this._gazeCooldown    = 0;
+    this._gazeProgressGfx = this.add.graphics().setDepth(200);
+    this._gazeDebugText   = this.add.text(8, 8, '', {
+      color: '#ffff00', fontFamily: 'monospace', fontSize: '12px',
+      stroke: '#000', strokeThickness: 2,
+    }).setDepth(201).setScrollFactor(0).setVisible(eyeTracking.isEnabled());
+    this._gazeTracker     = new EyeTracker();
+    this.tKey  = this.input.keyboard.addKey('T');
+    this.yKey  = this.input.keyboard.addKey('Y'); // recalibrate
+    if (eyeTracking.isEnabled()) {
+      await this._gazeTracker.start();
+      if (this.levelFile === 'keyboard_controls.xml') {
+        this._gazeTracker.calibrate();
+      }
+    }
   }
 
   playUnzipIntro() {
@@ -275,10 +313,29 @@ export class GameScene extends Phaser.Scene {
     // collide. Spike death detection uses position-based checks, not contact events,
     // so making spike bodies sensors doesn't break it.
     const isSensor = isKey || isSwitch || isDoor || isWall || isSpike;
+    const isBlock  = obj instanceof Block;
+    // Block friction from XML is 5, which in Matter.js means "glue" (real rubber ~1.0).
+    // When a block falls between two walls, both contacts apply friction simultaneously
+    // and the combined force exceeds gravity, slowing the fall to a crawl. Cap at 0.3
+    // and zero static friction so blocks can always fall freely between walls.
+    // Sensor bodies (switch, key, door, wall sprite, spike sprite) get friction:0 —
+    // a static sensor at the junction of a dynamic block and a solid wall can still
+    // participate in Matter.js's constraint graph and add phantom friction contact forces.
+    const bodyFriction       = isSensor ? 0 : isBlock ? Math.min(obj.friction, 0.5) : obj.friction;
+    const bodyFrictionStatic = (isSensor || isBlock) ? 0 : undefined;
     img.setBody(
       { type: 'rectangle', width: w, height: h },
-      { isStatic, isSensor, friction: obj.friction, density: densityPx, restitution: obj.restitution, label: obj.typeName }
+      { isStatic, isSensor, friction: bodyFriction, frictionStatic: bodyFrictionStatic,
+        density: densityPx, restitution: obj.restitution, label: obj.typeName }
     );
+    // Phaser's setBody does not reliably forward friction/frictionStatic/isSensor to
+    // the raw Matter body for static bodies. Force-set them directly so the physics
+    // engine always sees the correct values.
+    if (img.body) {
+      img.body.friction       = bodyFriction;
+      img.body.frictionStatic = bodyFrictionStatic ?? 0;
+      img.body.isSensor       = isSensor;
+    }
     if (isWall || isSpike) this._wallQueue.push({ obj, cx, cy, w, h });
 
     if (obj instanceof Block) img.setFixedRotation();
@@ -419,20 +476,33 @@ export class GameScene extends Phaser.Scene {
     // V-line icon: canopy points UP   (angle  0°, natural orientation).
     this.allIndicatorImages = [];
     this._alwaysIndicatorImages = [];
-    const makeIcon = (x, y, key, angle, alwaysVisible = true) => {
+    this._indicatorData = [];
+    const makeIcon = (x, y, key, angle, alwaysVisible = true, orientation = null, linePos = null) => {
       const img = this.add.image(x, y, key).setDisplaySize(ICON, ICON).setAngle(angle).setDepth(49);
       this.allIndicatorImages.push(img);
       if (alwaysVisible) this._alwaysIndicatorImages.push(img);
+      if (orientation !== null) this._indicatorData.push({ img, orientation, linePos, size: ICON });
       return img;
     };
 
     const alwaysH = new Set(level.horizontalLines);
     const alwaysV = new Set(level.verticalLines);
+    const alwaysD = new Set(level.diagonalLines);
+
+    // Diagonal icons sit on the right border. p=1 is the main diagonal (top-left →
+    // bottom-right, angle 45°); p=-1 is the anti-diagonal (angle -45° / 135°).
+    const rightX = ox + (dims.numCols - 0.5) * tileW;
+    const diagY  = (p) => p === 1
+      ? oy + dims.numRows * 0.3 * tileH
+      : oy + dims.numRows * 0.7 * tileH;
+    const diagAngle = (p) => p === 1 ? 45 : -45;
 
     for (const p of alwaysH)
-      makeIcon(leftX, oy + p * tileH, 'reflectionCircle', 90);
+      makeIcon(leftX, oy + p * tileH, 'reflectionCircle', 90, true, 'HORIZONTAL', p);
     for (const p of alwaysV)
-      makeIcon(ox + p * tileW, bottomY, 'reflectionCircle', 0);
+      makeIcon(ox + p * tileW, bottomY, 'reflectionCircle', 0, true, 'VERTICAL', p);
+    for (const p of alwaysD)
+      makeIcon(rightX, diagY(p), 'reflectionCircle', diagAngle(p), true, 'DIAGONAL', p);
 
     // Switch-controlled indicators: created hidden, shown only while switch is on.
     for (const obj of level.objects) {
@@ -441,13 +511,19 @@ export class GameScene extends Phaser.Scene {
       for (const p of obj.horizontalLines) {
         if (alwaysH.has(p)) continue;
         obj.indicatorImages.push(
-          makeIcon(leftX, oy + p * tileH, 'reflectionCircleSwitch', 90, false).setVisible(false)
+          makeIcon(leftX, oy + p * tileH, 'reflectionCircleSwitch', 90, false, 'HORIZONTAL', p).setVisible(false)
         );
       }
       for (const p of obj.verticalLines) {
         if (alwaysV.has(p)) continue;
         obj.indicatorImages.push(
-          makeIcon(ox + p * tileW, bottomY, 'reflectionCircleSwitch', 0, false).setVisible(false)
+          makeIcon(ox + p * tileW, bottomY, 'reflectionCircleSwitch', 0, false, 'VERTICAL', p).setVisible(false)
+        );
+      }
+      for (const p of obj.diagonalLines) {
+        if (alwaysD.has(p)) continue;
+        obj.indicatorImages.push(
+          makeIcon(rightX, diagY(p), 'reflectionCircleSwitch', diagAngle(p), false, 'DIAGONAL', p).setVisible(false)
         );
       }
     }
@@ -629,6 +705,18 @@ export class GameScene extends Phaser.Scene {
     this.handleReflectionInput();
     this.updateSwitches();
     this.updateBlocks();
+    this.updateGazeDwell();
+
+    if (Phaser.Input.Keyboard.JustDown(this.tKey)) {
+      const now = eyeTracking.toggle();
+      if (now) { this._gazeTracker.start(); this._gazeDebugText?.setVisible(true); }
+      else      { this._gazeTracker.stop(); this._gazeProgressGfx?.clear(); this._gazeBuffer = []; this._gazeDebugText?.setVisible(false).setText(''); }
+      this._showGazeToggleNotice(now);
+    }
+    if (Phaser.Input.Keyboard.JustDown(this.yKey) && this._gazeTracker?.active) {
+      this._gazeBuffer = [];
+      this._gazeTracker.calibrate();
+    }
 
     // matter.add.sprite auto-syncs position; only flip needs manual update.
     this.playerSprite.setFlipX(!this.playerData.facingRight);
@@ -724,7 +812,17 @@ export class GameScene extends Phaser.Scene {
 
   handleReflectionInput() {
     const JD = Phaser.Input.Keyboard.JustDown;
-    if (JD(this.reflectKey)) { this.triggerReflect(); return; }
+    if (JD(this.reflectKey)) {
+      // Implicit training: the user is looking at the active reflection indicator
+      // while pressing Space, so their current gaze is a training sample for that
+      // indicator's screen position.
+      if (this._gazeTracker?.active) {
+        const gaze = this._gazeTracker.getGaze();
+        if (gaze) this._gazeTracker.trainAtCurrentGaze(gaze.x, gaze.y);
+      }
+      this.triggerReflect();
+      return;
+    }
     if (JD(this.wKey)) this.moveReflectionLine('up');
     else if (JD(this.sKey)) this.moveReflectionLine('down');
     if (JD(this.aKey)) this.moveReflectionLine('left');
@@ -945,6 +1043,10 @@ export class GameScene extends Phaser.Scene {
         Matter.Body.setPosition(obj.body, obj.reflectionEndPosPx);
         Matter.Body.setVelocity(obj.body, { x: 0, y: 0 });
         obj.isBeingReflected = false;
+        // Matter.js keeps stale contact pairs active for a few frames after a body
+        // teleport, so updateBlocks would see a false floor contact and leave friction
+        // on, causing the block to fall slowly. Clear it with a short cooldown.
+        if (obj.typeName === 'Block') obj._postReflectFrames = 8;
       }
       // Rebuild merged wall/spike bodies now that reflectable objects are at new positions.
       const dims = this.level.dims;
@@ -1148,8 +1250,30 @@ export class GameScene extends Phaser.Scene {
   }
 
   updateBlocks() {
+    const pairs = this.matter.world.engine.pairs.list;
+
     for (const obj of this.level.objects) {
       if (obj.typeName !== 'Block' || !obj.body || !obj.sprite) continue;
+
+      // Zero friction while airborne so wall contacts can't pin the block via
+      // perpendicular friction forces. Restore it when the block has a solid floor
+      // contact so it doesn't slide around when resting.
+      // After a reflection teleport, ignore floor contacts for a few frames while
+      // Matter.js clears the now-stale contact pairs from the old position.
+      if (obj._postReflectFrames > 0) obj._postReflectFrames--;
+      let hasFloor = false;
+      if (!obj._postReflectFrames) {
+        for (const pair of pairs) {
+          if (!pair.isActive || pair.isSensor) continue;
+          if (pair.bodyA !== obj.body && pair.bodyB !== obj.body) continue;
+          const n   = pair.collision.normal;
+          const dot = pair.bodyA === obj.body ? n.y : -n.y;
+          if (dot < -0.7) { hasFloor = true; break; }
+        }
+      }
+      obj.body.friction       = hasFloor ? Math.min(obj.friction, 0.5) : 0;
+      obj.body.frictionStatic = 0;
+
       if (obj.textureName !== 'buddyBlock') continue;
 
       if (obj._flinchTimer === undefined) { obj._flinchTimer = 0; obj._wasFalling = false; }
@@ -1324,6 +1448,104 @@ export class GameScene extends Phaser.Scene {
         align: 'center', stroke: '#000000', strokeThickness: 4
       }).setOrigin(0.5).setDepth(200);
     this.tweens.add({ targets: banner, alpha: 0, delay: 2500, duration: 800, onComplete: () => banner.destroy() });
+  }
+
+  // -------------------------------------------------------------------------
+  // Eye tracking gaze dwell
+  // -------------------------------------------------------------------------
+
+  updateGazeDwell() {
+    // Rolling-buffer dwell: keep the last BUFFER frames of canvas-space gaze.
+    // A reflection triggers when at least DWELL_FRAC of those frames landed
+    // within HIT_RADIUS of the same indicator. Brief blinks or saccades away
+    // no longer reset progress — the count just dips slightly.
+    const BUFFER     = 90;   // frames (~1.5s at 60fps)
+    const DWELL_FRAC = 0.50; // 50% of buffer must be on-target
+    const HIT_RADIUS = 80;   // px — generous to account for tracker noise
+
+    if (!this._gazeTracker?.active) {
+      this._gazeProgressGfx?.clear();
+      this._gazeDebugText?.setVisible(false).setText('');
+      return;
+    }
+
+    const gaze = this._gazeTracker.getGaze();
+    this._gazeProgressGfx.clear();
+
+    if (!gaze) {
+      this._gazeDebugText?.setVisible(true).setText('EYE: active — no gaze yet (check camera / complete calibration)');
+      return;
+    }
+
+    const rect = this.game.canvas.getBoundingClientRect();
+    const cx = gaze.x - rect.left;
+    const cy = gaze.y - rect.top;
+
+    this._gazeDebugText?.setText(
+      `EYE: active  vp=(${Math.round(gaze.x)},${Math.round(gaze.y)})  cv=(${Math.round(cx)},${Math.round(cy)})`
+    );
+
+    // Debug crosshair at current gaze position.
+    this._gazeProgressGfx.lineStyle(2, 0xffff00, 0.85);
+    this._gazeProgressGfx.strokeCircle(cx, cy, 18);
+    this._gazeProgressGfx.beginPath();
+    this._gazeProgressGfx.moveTo(cx - 14, cy); this._gazeProgressGfx.lineTo(cx + 14, cy);
+    this._gazeProgressGfx.moveTo(cx, cy - 14); this._gazeProgressGfx.lineTo(cx, cy + 14);
+    this._gazeProgressGfx.strokePath();
+
+    // Push to rolling buffer.
+    this._gazeBuffer.push({ x: cx, y: cy });
+    if (this._gazeBuffer.length > BUFFER) this._gazeBuffer.shift();
+
+    if (this._gazeCooldown > 0) { this._gazeCooldown--; return; }
+
+    // Find the indicator with the most readings in the buffer.
+    let bestHit = null, bestCount = 0;
+    for (const d of this._indicatorData) {
+      if (!d.img.visible) continue;
+      let count = 0;
+      for (const p of this._gazeBuffer) {
+        if (Math.hypot(p.x - d.img.x, p.y - d.img.y) < HIT_RADIUS) count++;
+      }
+      if (count > bestCount) { bestCount = count; bestHit = d; }
+    }
+
+    if (!bestHit || bestCount < 3) return; // not enough readings near any icon yet
+
+    const frac = Math.min(bestCount / (BUFFER * DWELL_FRAC), 1);
+
+    // Progress arc around the leading indicator.
+    const r = bestHit.size / 2 + 6;
+    this._gazeProgressGfx.lineStyle(3, 0x00ff88, 0.9);
+    this._gazeProgressGfx.beginPath();
+    this._gazeProgressGfx.arc(
+      bestHit.img.x, bestHit.img.y, r,
+      -Math.PI / 2,
+      -Math.PI / 2 + frac * Math.PI * 2,
+      false
+    );
+    this._gazeProgressGfx.strokePath();
+
+    if (frac >= 1) {
+      this._gazeBuffer      = [];
+      this._gazeCooldown    = 90;
+      this.level.reflectionOrientation  = bestHit.orientation;
+      this.level.reflectionLinePosition = bestHit.linePos;
+      this.initReflectionState();
+      this.triggerReflect();
+    }
+  }
+
+  _showGazeToggleNotice(enabled) {
+    const { width: sw, height: sh } = this.scale;
+    const banner = this.add.text(sw / 2, sh * 0.18,
+      enabled ? 'Eye tracking ON\n(look at umbrella for 1s to reflect)' : 'Eye tracking OFF', {
+        color: enabled ? '#00ff88' : '#ff8888',
+        fontFamily: 'monospace', fontSize: '16px',
+        align: 'center', stroke: '#000000', strokeThickness: 3
+      }).setOrigin(0.5).setDepth(200);
+    this.tweens.add({ targets: banner, alpha: 0, delay: 2000, duration: 600,
+      onComplete: () => banner.destroy() });
   }
 
   // -------------------------------------------------------------------------
