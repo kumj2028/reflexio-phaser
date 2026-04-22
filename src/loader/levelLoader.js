@@ -164,7 +164,7 @@ export function parseLevelFromString(xmlText) {
  * Works in both Vite dev and prod since /levels/ is a static asset path.
  */
 export async function loadLevel(filename) {
-  const url = `/levels/${filename}`;
+  const url = `${import.meta.env.BASE_URL}levels/${filename}`;
   const resp = await fetch(url);
   if (!resp.ok) throw new Error(`Failed to fetch ${url}: ${resp.status}`);
   const text = await resp.text();

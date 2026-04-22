@@ -15,6 +15,7 @@ import { registerClass } from '../loader/levelLoader.js';
 export class Spike extends ReflectableAndOrientable {
   constructor(level) {
     super(level);
+    this.typeName = 'Spike';
   }
 
   /**

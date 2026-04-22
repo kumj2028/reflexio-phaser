@@ -13,6 +13,7 @@ import { registerClass } from '../loader/levelLoader.js';
 export class Key extends ReflectableObject {
   constructor(level) {
     super(level);
+    this.typeName = 'Key';
     this.isDead = false;
   }
 }

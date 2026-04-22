@@ -19,6 +19,7 @@ import { registerClass } from '../loader/levelLoader.js';
 export class Door extends ReflectableObject {
   constructor(level) {
     super(level);
+    this.typeName = 'Door';
     this.openDoorTextureName = null;
     this.closeDoorTextureName = null;
     this.isOpen = false;

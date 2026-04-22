@@ -24,6 +24,7 @@ import { registerClass } from '../loader/levelLoader.js';
 export class Player {
   constructor(level) {
     this.level = level;
+    this.typeName = 'Player';
     this.textureName = null;
     this.reflectionTextureName = null;
 

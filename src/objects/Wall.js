@@ -10,6 +10,7 @@ import { registerClass } from '../loader/levelLoader.js';
 export class Wall extends ReflectableObject {
   constructor(level) {
     super(level);
+    this.typeName = 'Wall';
   }
 }
 

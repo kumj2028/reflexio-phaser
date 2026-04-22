@@ -115,6 +115,7 @@ export class MainMenuScene extends Phaser.Scene {
     } else if (id === 'credits') {
       this.scene.start('GameScene', { levelFile: 'credits_level.xml', levelIdx: -1 });
     } else if (id === 'exit') {
+      try { this.sound.stopAll(); } catch { /* ignore */ }
       this.scene.start('SplashScene');
     }
   }

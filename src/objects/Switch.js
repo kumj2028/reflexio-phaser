@@ -16,6 +16,7 @@ import { registerClass } from '../loader/levelLoader.js';
 export class Switch extends ReflectableAndOrientable {
   constructor(level) {
     super(level);
+    this.typeName = 'Switch';
     this.horizontalLines = [];
     this.verticalLines   = [];
     this.diagonalLines   = [];

@@ -249,8 +249,8 @@ export class GameScene extends Phaser.Scene {
       return;
     }
 
-    const isKey    = obj.constructor.name === 'Key';
-    const isSwitch = obj.constructor.name === 'Switch';
+    const isKey    = obj.typeName === 'Key';
+    const isSwitch = obj.typeName === 'Switch';
     const isDoor   = obj instanceof Door;
     const isStatic = !(obj instanceof Block);
     const rawTex   = this.resolveTexture(obj);
@@ -268,7 +268,7 @@ export class GameScene extends Phaser.Scene {
       ? this.matter.add.sprite(cx, cy, texKey, frame)
       : this.matter.add.image(cx, cy, texKey, frame);
     img.setDisplaySize(w, h);
-    const isWall   = obj.constructor.name === 'Wall';
+    const isWall   = obj.typeName === 'Wall';
     const isSpike  = obj instanceof Spike;
     // Wall and spike collision is handled by merged column/row bodies built after all
     // objects are placed. Individual bodies are sensors so sprites render but don't
@@ -277,7 +277,7 @@ export class GameScene extends Phaser.Scene {
     const isSensor = isKey || isSwitch || isDoor || isWall || isSpike;
     img.setBody(
       { type: 'rectangle', width: w, height: h },
-      { isStatic, isSensor, friction: obj.friction, density: densityPx, restitution: obj.restitution, label: obj.constructor.name }
+      { isStatic, isSensor, friction: obj.friction, density: densityPx, restitution: obj.restitution, label: obj.typeName }
     );
     if (isWall || isSpike) this._wallQueue.push({ obj, cx, cy, w, h });
 
@@ -436,7 +436,7 @@ export class GameScene extends Phaser.Scene {
 
     // Switch-controlled indicators: created hidden, shown only while switch is on.
     for (const obj of level.objects) {
-      if (obj.constructor.name !== 'Switch') continue;
+      if (obj.typeName !== 'Switch') continue;
       obj.indicatorImages = [];
       for (const p of obj.horizontalLines) {
         if (alwaysH.has(p)) continue;
@@ -620,7 +620,7 @@ export class GameScene extends Phaser.Scene {
 
     // Blocks that fall off screen
     for (const obj of this.level.objects) {
-      if (obj.constructor.name !== 'Block' || !obj.body || obj.body.isStatic) continue;
+      if (obj.typeName !== 'Block' || !obj.body || obj.body.isStatic) continue;
       if (obj.body.position.y > this.offsetY + levelH + 100) this.destroyObject(obj);
     }
 
@@ -811,7 +811,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   destroyObject(obj) {
-    if (obj.constructor.name === 'Block') this._blocksDestroyed++;
+    if (obj.typeName === 'Block') this._blocksDestroyed++;
     obj.sprite?.destroy();
     obj.sprite = null;
     if (obj.body) {
@@ -830,11 +830,11 @@ export class GameScene extends Phaser.Scene {
     const safe = new Set(['Key', 'Door', 'Switch']);
     for (const obj of this.level.objects) {
       if (!obj.isBeingReflected || !obj.reflectionEndPosPx) continue;
-      if (safe.has(obj.constructor.name)) continue;
+      if (safe.has(obj.typeName)) continue;
       const { x: ex, y: ey } = obj.reflectionEndPosPx;
       if (Math.abs(px - ex) < tileW / 2 && Math.abs(py - ey) < tileH / 2) {
         this._pendingReflectionDeath = true;
-        const n = obj.constructor.name;
+        const n = obj.typeName;
         this._pendingReflectionDeathType = n === 'Block' ? 'block' : n === 'Spike' ? 'spikeCollision' : 'wall';
         return;
       }
@@ -949,7 +949,7 @@ export class GameScene extends Phaser.Scene {
       // Rebuild merged wall/spike bodies now that reflectable objects are at new positions.
       const dims = this.level.dims;
       this._wallQueue = this.level.objects
-        .filter(o => (o.constructor.name === 'Wall' || o instanceof Spike) && o.sprite)
+        .filter(o => (o.typeName === 'Wall' || o instanceof Spike) && o.sprite)
         .map(o => ({ obj: o, cx: o.sprite.x, cy: o.sprite.y, w: o.widthMeters * dims.scale, h: o.heightMeters * dims.scale }));
       this.buildMergedWalls();
 
@@ -1058,15 +1058,24 @@ export class GameScene extends Phaser.Scene {
 
     // Player-specific contacts
     const pb = bodyA.label === 'player' ? bodyA : bodyB.label === 'player' ? bodyB : null;
+
+    console.log('Collision:', bodyA.label, bodyB.label);
+
     if (!pb) return;
     const other = pb === bodyA ? bodyB : bodyA;
 
+    console.log('Other label:', other.label);
+    console.log('Other refObj:', other.refObj);
+
     if (other.label === 'Key') {
+      console.log('Key collision detected');
       const k = other.refObj;
       if (k && !k.isDead) this.collectKey(k);
     } else if (other.label === 'Door') {
+      console.log('Door collision detected');
       if (this.level.door?.isOpen) this.triggerWin();
     } else if (other.label === 'Spike') {
+      console.log('Spike collision detected');
       this.checkSpikeDeath(other.refObj, pb.position);
     }
   }
@@ -1131,7 +1140,7 @@ export class GameScene extends Phaser.Scene {
     const tileW = this.level.dims.tileSizePx().w;
     const tileH = this.level.dims.tileSizePx().h;
     for (const obj of this.level.objects) {
-      if (obj.constructor.name !== 'Switch' || !obj.isPressed || !obj.pressingBody) continue;
+      if (obj.typeName !== 'Switch' || !obj.isPressed || !obj.pressingBody) continue;
       const dx = Math.abs(obj.pressingBody.position.x - obj.body.position.x);
       const dy = Math.abs(obj.pressingBody.position.y - obj.body.position.y);
       if (dx > tileW || dy > tileH) this.releaseSwitch(obj);
@@ -1140,7 +1149,7 @@ export class GameScene extends Phaser.Scene {
 
   updateBlocks() {
     for (const obj of this.level.objects) {
-      if (obj.constructor.name !== 'Block' || !obj.body || !obj.sprite) continue;
+      if (obj.typeName !== 'Block' || !obj.body || !obj.sprite) continue;
       if (obj.textureName !== 'buddyBlock') continue;
 
       if (obj._flinchTimer === undefined) { obj._flinchTimer = 0; obj._wasFalling = false; }
@@ -1171,7 +1180,7 @@ export class GameScene extends Phaser.Scene {
       const threshold = (tileSize * 1.1) ** 2;
       let closest = null, closestDist = Infinity;
       for (const obj of this.level.objects) {
-        if (obj.constructor.name !== 'Block') continue;
+        if (obj.typeName !== 'Block') continue;
         const dx = obj.body.position.x - this.playerBody.position.x;
         const dy = obj.body.position.y - this.playerBody.position.y;
         const d2 = dx * dx + dy * dy;

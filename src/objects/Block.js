@@ -11,6 +11,7 @@ import { registerClass } from '../loader/levelLoader.js';
 export class Block extends ReflectableObject {
   constructor(level) {
     super(level);
+    this.typeName = 'Block';
     this.isOriginallyReflectable = true;
   }
 
