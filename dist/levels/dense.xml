@@ -1,0 +1,4194 @@
+﻿<?xml version = "1.0"?>
+<Level hash="level">
+  <BkgSound>Sleuth</BkgSound>
+  <BkgImage>bkgTexture_gray</BkgImage>
+  <Width>13</Width>
+  <Height>13</Height>
+  <Gravity>0,9.8</Gravity>
+  <Scale>50</Scale>
+  <Dimensions>20, 20</Dimensions>
+  <ReflectionPauseTime>25</ReflectionPauseTime>
+  <CanReflectHorizontal>True</CanReflectHorizontal>
+  <CanReflectVertical>True</CanReflectVertical>
+  <CanReflectDiagonal>False</CanReflectDiagonal>
+  <HRLine>10</HRLine>
+  <VRLine>10</VRLine>
+  <ReflectionOrientation>H</ReflectionOrientation>
+  <ReflectionLinePosition>10</ReflectionLinePosition>
+  <Initialize />
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>9</X>
+    <Y>0</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>7</X>
+    <Y>0</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>8</X>
+    <Y>0</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>0</X>
+    <Y>0</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>1</X>
+    <Y>0</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>2</X>
+    <Y>1</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>0</X>
+    <Y>1</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>17</X>
+    <Y>1</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>5</X>
+    <Y>0</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>6</X>
+    <Y>0</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>2</X>
+    <Y>0</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>19</X>
+    <Y>1</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>18</X>
+    <Y>0</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>19</X>
+    <Y>0</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>11</X>
+    <Y>0</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>12</X>
+    <Y>0</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>3</X>
+    <Y>0</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>4</X>
+    <Y>0</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>10</X>
+    <Y>0</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>16</X>
+    <Y>0</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>17</X>
+    <Y>0</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>3</X>
+    <Y>1</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>7</X>
+    <Y>1</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>9</X>
+    <Y>1</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>8</X>
+    <Y>1</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>16</X>
+    <Y>1</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>15</X>
+    <Y>1</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>3</X>
+    <Y>7</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>5</X>
+    <Y>7</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>4</X>
+    <Y>7</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>11</X>
+    <Y>1</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>10</X>
+    <Y>1</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>14</X>
+    <Y>1</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>4</X>
+    <Y>2</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>2</X>
+    <Y>2</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>3</X>
+    <Y>2</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>5</X>
+    <Y>1</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>4</X>
+    <Y>1</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>13</X>
+    <Y>1</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>12</X>
+    <Y>1</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>6</X>
+    <Y>1</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>0</X>
+    <Y>2</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>1</X>
+    <Y>2</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>16</X>
+    <Y>3</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>18</X>
+    <Y>3</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>17</X>
+    <Y>3</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>7</X>
+    <Y>2</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>9</X>
+    <Y>2</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>4</X>
+    <Y>4</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>5</X>
+    <Y>4</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>8</X>
+    <Y>3</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>19</X>
+    <Y>2</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>19</X>
+    <Y>3</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>11</X>
+    <Y>2</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>9</X>
+    <Y>3</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>10</X>
+    <Y>3</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>10</X>
+    <Y>2</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>15</X>
+    <Y>3</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>14</X>
+    <Y>3</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>15</X>
+    <Y>2</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>17</X>
+    <Y>2</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>16</X>
+    <Y>2</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>11</X>
+    <Y>3</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>11</X>
+    <Y>3</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>3</X>
+    <Y>4</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>0</X>
+    <Y>3</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>2</X>
+    <Y>3</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>1</X>
+    <Y>3</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>8</X>
+    <Y>2</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>7</X>
+    <Y>3</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>15</X>
+    <Y>0</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>13</X>
+    <Y>0</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>14</X>
+    <Y>0</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>4</X>
+    <Y>3</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>3</X>
+    <Y>3</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>6</X>
+    <Y>3</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>10</X>
+    <Y>4</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>8</X>
+    <Y>4</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>9</X>
+    <Y>4</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>1</X>
+    <Y>4</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>2</X>
+    <Y>4</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>6</X>
+    <Y>2</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>5</X>
+    <Y>3</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>0</X>
+    <Y>4</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>6</X>
+    <Y>4</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>7</X>
+    <Y>4</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>19</X>
+    <Y>4</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>17</X>
+    <Y>4</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>18</X>
+    <Y>5</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>11</X>
+    <Y>4</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>19</X>
+    <Y>5</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>15</X>
+    <Y>6</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>12</X>
+    <Y>6</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>14</X>
+    <Y>6</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>18</X>
+    <Y>4</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>5</X>
+    <Y>5</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>14</X>
+    <Y>4</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>6</X>
+    <Y>5</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>8</X>
+    <Y>5</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>7</X>
+    <Y>5</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>16</X>
+    <Y>5</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>15</X>
+    <Y>5</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>15</X>
+    <Y>4</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>16</X>
+    <Y>4</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>17</X>
+    <Y>5</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>10</X>
+    <Y>5</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>9</X>
+    <Y>5</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>10</X>
+    <Y>6</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>2</X>
+    <Y>6</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>0</X>
+    <Y>6</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>4</X>
+    <Y>6</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>3</X>
+    <Y>5</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>3</X>
+    <Y>6</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>12</X>
+    <Y>2</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>14</X>
+    <Y>2</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>12</X>
+    <Y>3</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>1</X>
+    <Y>6</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>12</X>
+    <Y>4</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>4</X>
+    <Y>5</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>18</X>
+    <Y>6</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>17</X>
+    <Y>6</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>19</X>
+    <Y>7</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>11</X>
+    <Y>6</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>19</X>
+    <Y>6</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>0</X>
+    <Y>5</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>2</X>
+    <Y>5</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>1</X>
+    <Y>5</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>16</X>
+    <Y>6</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>5</X>
+    <Y>6</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>9</X>
+    <Y>7</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>11</X>
+    <Y>7</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>10</X>
+    <Y>7</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>18</X>
+    <Y>7</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>17</X>
+    <Y>7</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>16</X>
+    <Y>9</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>15</X>
+    <Y>9</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>2</X>
+    <Y>8</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>13</X>
+    <Y>7</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>12</X>
+    <Y>7</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>16</X>
+    <Y>7</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>1</X>
+    <Y>8</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>0</X>
+    <Y>7</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>0</X>
+    <Y>8</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>7</X>
+    <Y>7</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>6</X>
+    <Y>7</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>15</X>
+    <Y>7</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>14</X>
+    <Y>7</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>8</X>
+    <Y>7</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>1</X>
+    <Y>7</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>2</X>
+    <Y>7</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>14</X>
+    <Y>8</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>17</X>
+    <Y>9</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>19</X>
+    <Y>9</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>18</X>
+    <Y>9</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>3</X>
+    <Y>8</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>5</X>
+    <Y>8</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>11</X>
+    <Y>5</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>14</X>
+    <Y>5</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>12</X>
+    <Y>5</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>15</X>
+    <Y>8</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>18</X>
+    <Y>8</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>6</X>
+    <Y>8</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>11</X>
+    <Y>9</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>12</X>
+    <Y>9</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>12</X>
+    <Y>8</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>19</X>
+    <Y>8</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>16</X>
+    <Y>8</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>8</X>
+    <Y>8</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>13</X>
+    <Y>8</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>17</X>
+    <Y>8</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>14</X>
+    <Y>9</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>13</X>
+    <Y>9</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>11</X>
+    <Y>8</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>10</X>
+    <Y>8</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>9</X>
+    <Y>8</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>7</X>
+    <Y>8</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>4</X>
+    <Y>8</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>2</X>
+    <Y>9</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>1</X>
+    <Y>9</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>0</X>
+    <Y>9</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>0</X>
+    <Y>10</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>1</X>
+    <Y>10</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>2</X>
+    <Y>10</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>5</X>
+    <Y>10</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>6</X>
+    <Y>10</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>7</X>
+    <Y>10</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>8</X>
+    <Y>10</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>9</X>
+    <Y>10</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>10</X>
+    <Y>10</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>11</X>
+    <Y>10</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>12</X>
+    <Y>10</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>13</X>
+    <Y>10</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>14</X>
+    <Y>10</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>15</X>
+    <Y>10</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>16</X>
+    <Y>10</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>17</X>
+    <Y>10</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>18</X>
+    <Y>10</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>19</X>
+    <Y>10</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>19</X>
+    <Y>11</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>18</X>
+    <Y>11</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>17</X>
+    <Y>11</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>15</X>
+    <Y>11</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>14</X>
+    <Y>11</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>13</X>
+    <Y>11</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>12</X>
+    <Y>11</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>11</X>
+    <Y>11</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>10</X>
+    <Y>11</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>9</X>
+    <Y>11</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>8</X>
+    <Y>11</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>7</X>
+    <Y>11</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>6</X>
+    <Y>11</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>5</X>
+    <Y>11</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>4</X>
+    <Y>11</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>2</X>
+    <Y>11</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>1</X>
+    <Y>11</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>0</X>
+    <Y>11</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>0</X>
+    <Y>12</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>1</X>
+    <Y>12</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>2</X>
+    <Y>12</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>3</X>
+    <Y>12</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>4</X>
+    <Y>12</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>5</X>
+    <Y>12</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>6</X>
+    <Y>12</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>7</X>
+    <Y>12</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>8</X>
+    <Y>12</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>9</X>
+    <Y>12</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>10</X>
+    <Y>12</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>11</X>
+    <Y>12</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>12</X>
+    <Y>12</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>13</X>
+    <Y>12</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>14</X>
+    <Y>12</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>15</X>
+    <Y>12</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>18</X>
+    <Y>13</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>16</X>
+    <Y>13</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>17</X>
+    <Y>13</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>15</X>
+    <Y>13</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>14</X>
+    <Y>13</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>13</X>
+    <Y>13</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>8</X>
+    <Y>13</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>7</X>
+    <Y>13</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>6</X>
+    <Y>13</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>5</X>
+    <Y>13</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>3</X>
+    <Y>13</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>4</X>
+    <Y>13</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>2</X>
+    <Y>13</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>1</X>
+    <Y>13</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>0</X>
+    <Y>13</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>0</X>
+    <Y>14</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>1</X>
+    <Y>14</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>2</X>
+    <Y>14</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>3</X>
+    <Y>14</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>4</X>
+    <Y>14</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>5</X>
+    <Y>14</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>7</X>
+    <Y>14</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>8</X>
+    <Y>14</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>10</X>
+    <Y>14</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>11</X>
+    <Y>14</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>19</X>
+    <Y>15</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>18</X>
+    <Y>15</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>17</X>
+    <Y>15</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>13</X>
+    <Y>15</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>15</X>
+    <Y>15</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>14</X>
+    <Y>15</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>16</X>
+    <Y>15</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>12</X>
+    <Y>15</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>9</X>
+    <Y>15</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>9</X>
+    <Y>14</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>8</X>
+    <Y>15</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>7</X>
+    <Y>15</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>6</X>
+    <Y>15</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>6</X>
+    <Y>14</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>5</X>
+    <Y>15</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>4</X>
+    <Y>15</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>3</X>
+    <Y>15</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>2</X>
+    <Y>15</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>1</X>
+    <Y>15</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>0</X>
+    <Y>15</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>0</X>
+    <Y>16</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>1</X>
+    <Y>16</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>2</X>
+    <Y>16</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>3</X>
+    <Y>16</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>4</X>
+    <Y>16</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>5</X>
+    <Y>16</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>6</X>
+    <Y>16</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>7</X>
+    <Y>16</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>8</X>
+    <Y>16</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>9</X>
+    <Y>16</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>11</X>
+    <Y>16</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>12</X>
+    <Y>16</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>13</X>
+    <Y>16</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>14</X>
+    <Y>16</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>15</X>
+    <Y>16</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>16</X>
+    <Y>16</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>17</X>
+    <Y>16</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>18</X>
+    <Y>16</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>19</X>
+    <Y>16</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>19</X>
+    <Y>17</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>9</X>
+    <Y>17</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>8</X>
+    <Y>17</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>7</X>
+    <Y>17</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>6</X>
+    <Y>17</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>4</X>
+    <Y>17</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>3</X>
+    <Y>17</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>2</X>
+    <Y>17</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>1</X>
+    <Y>17</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>0</X>
+    <Y>17</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>0</X>
+    <Y>18</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>2</X>
+    <Y>18</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>3</X>
+    <Y>18</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>4</X>
+    <Y>18</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>5</X>
+    <Y>18</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>6</X>
+    <Y>18</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>7</X>
+    <Y>18</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>8</X>
+    <Y>18</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>9</X>
+    <Y>18</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>10</X>
+    <Y>18</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>11</X>
+    <Y>18</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>12</X>
+    <Y>18</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>13</X>
+    <Y>18</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>14</X>
+    <Y>18</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>15</X>
+    <Y>18</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>16</X>
+    <Y>18</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>17</X>
+    <Y>18</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>18</X>
+    <Y>18</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>19</X>
+    <Y>18</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>19</X>
+    <Y>19</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>18</X>
+    <Y>19</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>17</X>
+    <Y>19</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>16</X>
+    <Y>19</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>15</X>
+    <Y>19</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>14</X>
+    <Y>19</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>13</X>
+    <Y>19</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>11</X>
+    <Y>19</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>12</X>
+    <Y>19</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>10</X>
+    <Y>19</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>0</X>
+    <Y>19</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>1</X>
+    <Y>19</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>8</X>
+    <Y>19</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>3</X>
+    <Y>19</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>4</X>
+    <Y>19</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>2</X>
+    <Y>19</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Key params="level">
+    <Texture>keyTexture</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>13</X>
+    <Y>6</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>0</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Key>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>5</X>
+    <Y>19</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Door params="level">
+    <Texture>closeDoorTexture</Texture>
+    <OpenDoorTexture>openDoorTexture</OpenDoorTexture>
+    <CloseDoorTexture>closeDoorTexture</CloseDoorTexture>
+    <IsReflectable>True</IsReflectable>
+    <X>10</X>
+    <Y>9</Y>
+    <ReflectedHorizontal>True</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>0</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Door>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>7</X>
+    <Y>19</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>9</X>
+    <Y>19</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Wall params="level">
+    <Texture>block_orange</Texture>
+    <IsReflectable>True</IsReflectable>
+    <X>6</X>
+    <Y>19</Y>
+    <ReflectedHorizontal>False</ReflectedHorizontal>
+    <ReflectedVertical>False</ReflectedVertical>
+    <Friction>1</Friction>
+    <Density>0</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Wall>
+  <Player params="level">
+    <Texture>playerTexture</Texture>
+    <ReflectionTexture>reflectionStrip</ReflectionTexture>
+    <BufferedPosition>1,1</BufferedPosition>
+    <Friction>0</Friction>
+    <Density>1.5</Density>
+    <Restitution>0</Restitution>
+    <Initialize />
+  </Player>
+</Level>

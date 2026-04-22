@@ -1,0 +1,26 @@
+# Build output and dependencies
+node_modules/
+dist/
+.vite/
+
+# Lock files - regeneratable, and large
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Don't stream binary assets into context (Claude Code reads them by path when needed,
+# but shouldn't need to load them for general code work)
+public/images/
+public/audio/
+
+# Level XMLs are text and occasionally relevant (one is useful to peek at),
+# but dumping all 64 into context is wasteful. Claude Code can read any
+# specific file on demand.
+public/levels/
+
+# Editor cruft
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
