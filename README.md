@@ -1,23 +1,7 @@
 # Reflexio (Phaser port)
 
 A port of Reflexio (originally XNA/FNA + Farseer Physics) to Phaser 3 + Matter.js,
-built in incremental sessions.
-
-## Status
-
-**Session 1 complete: scaffold + level loader + static rendering.**
-
-- Full project scaffold (Vite + Phaser 3.80)
-- Asset registries ported from `GameEngine.cs`
-- Ordered 53-level list with difficulty codes
-- Coordinate system helpers (tile / meters / pixels)
-- XML level loader (port of `LevelCreator.cs` reflection-based parser)
-- Data-model classes: `Level`, `Wall`, `Block`, `Spike`, `Switch`, `Key`, `Door`, `Player`
-- `PreloadScene` + `TestScene` that loads a level and renders sprites
-  at their correct tile positions
-
-Verified by parsing all 64 level XMLs through the loader without errors,
-plus a spot-check of `block_intro.xml` against hand-extracted values.
+built in incremental sessions. Added additional eye tracking input for picking reflection lines that is optional (to try hit T in a level).
 
 ## Running
 
@@ -26,26 +10,7 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:3000. Default level is `block_intro.xml`.
-
-Keyboard shortcuts in `TestScene`:
-- `1` — tutorial_movement
-- `2` — tutorial_vertical
-- `3` — tutorial_horizontal
-- `4` — block_intro
-- `5` — switch_intro
-- `6` — hard_spider
-
-Magenta rectangles with text labels mark missing textures.
-
-## What comes next
-
-- **Session 2** — Matter.js integration, player movement, ground sensing
-- **Session 3** — Reflection mechanic (horizontal/vertical/diagonal)
-- **Session 4** — Block grab, switches, doors/keys, win/lose
-- **Session 5** — Menus, level select, audio
-- **Session 6** — Achievements, save state, polish
-- **Session 7+** — Bug hunt, fidelity pass across all 53 levels
+Open http://localhost:3000 or whatever url the terminal provides
 
 ## Project structure
 
