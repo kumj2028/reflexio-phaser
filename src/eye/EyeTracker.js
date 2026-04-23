@@ -1,15 +1,11 @@
 import { runCalibration } from './CalibrationOverlay.js';
+import { KalmanFilter1D } from './KalmanFilter1D.js';
 
 const WEBGAZER_CDN = 'https://cdn.jsdelivr.net/npm/webgazer@2.1.0/dist/webgazer.js';
 
-// Smoothing: lower = smoother but more lag. 0.2 is a good balance for
-// glasses users where raw signal is noisier.
-const SMOOTH_ALPHA = 0.2;
-
-// Outlier rejection: discard any reading that jumps more than this many px
-// from the current smoothed position in a single frame. Single-frame spikes
-// from blinks or tracking loss are almost always >300px jumps.
-const MAX_JUMP_PX = 300;
+const MAX_JUMP_PX    = 300;
+const BLINK_MIN_CBS  = 2;   // min consecutive null callbacks to count as blink onset
+const BLINK_MAX_CBS  = 18;  // max null callbacks before treated as tracking loss (not blink)
 
 function loadScript(url) {
   return new Promise((resolve, reject) => {
@@ -24,9 +20,12 @@ function loadScript(url) {
 
 export class EyeTracker {
   constructor() {
-    this._gaze   = null;
-    this._smooth = null;
-    this._active = false;
+    this._gaze         = null;
+    this._kx           = new KalmanFilter1D();
+    this._ky           = new KalmanFilter1D();
+    this._active       = false;
+    this._nullCount    = 0;   // consecutive null callbacks from WebGazer
+    this._blinkPending = false; // set true when a valid blink completes
   }
 
   async start() {
@@ -42,21 +41,24 @@ export class EyeTracker {
       await window.webgazer
         .setRegression('ridge')
         .setGazeListener((data) => {
-          if (!data) return;
+          if (!data) {
+            this._nullCount++;
+            return;
+          }
 
-          // Outlier rejection: ignore implausible jumps.
-          if (this._smooth) {
-            const dist = Math.hypot(data.x - this._smooth.x, data.y - this._smooth.y);
+          // Gaze returned after a null run — check if it was a blink.
+          if (this._nullCount >= BLINK_MIN_CBS && this._nullCount <= BLINK_MAX_CBS) {
+            this._blinkPending = true;
+          }
+          this._nullCount = 0;
+
+          // Outlier rejection.
+          if (this._gaze) {
+            const dist = Math.hypot(data.x - this._gaze.x, data.y - this._gaze.y);
             if (dist > MAX_JUMP_PX) return;
           }
 
-          if (!this._smooth) {
-            this._smooth = { x: data.x, y: data.y };
-          } else {
-            this._smooth.x = SMOOTH_ALPHA * data.x + (1 - SMOOTH_ALPHA) * this._smooth.x;
-            this._smooth.y = SMOOTH_ALPHA * data.y + (1 - SMOOTH_ALPHA) * this._smooth.y;
-          }
-          this._gaze = { x: this._smooth.x, y: this._smooth.y };
+          this._gaze = { x: this._kx.update(data.x), y: this._ky.update(data.y) };
         })
         .begin();
     } catch (e) {
@@ -64,7 +66,6 @@ export class EyeTracker {
       return;
     }
 
-    // Show video preview so user can confirm face detection.
     window.webgazer.showPredictionPoints(true);
     window.webgazer.showVideoPreview(true);
     const container = document.getElementById('webgazerVideoContainer');
@@ -73,35 +74,34 @@ export class EyeTracker {
     }
 
     this._active = true;
-    window.webgazer.showPredictionPoints(false);
+    window.webgazer.showPredictionPoints(true);
   }
 
-  // Show calibration overlay and collect training samples.
-  // Called explicitly by GameScene when on the keyboard_controls level.
-  async calibrate() {
+  async calibrate(points) {
     if (!this._active) return;
+    try { window.webgazer.clearData(); } catch { /* ignore */ }
+    this._kx.reset();
+    this._ky.reset();
+    this._gaze = null;
+    await runCalibration(points);
     window.webgazer.showPredictionPoints(true);
-    await runCalibration();
-    window.webgazer.showPredictionPoints(false);
   }
 
   stop() {
     if (!this._active) return;
-    // end() saves the current model to localStorage so next session skips calibration.
     try { window.webgazer.end(); } catch { /* ignore */ }
     for (const id of ['webgazerVideoContainer', 'webgazerFaceOverlay',
                       'webgazerFaceFeedbackBox', 'webgazerGazeDot']) {
       document.getElementById(id)?.remove();
     }
-    this._active = false;
-    this._gaze   = null;
-    this._smooth = null;
+    this._active       = false;
+    this._gaze         = null;
+    this._nullCount    = 0;
+    this._blinkPending = false;
+    this._kx.reset();
+    this._ky.reset();
   }
 
-  // Called by GameScene when the user explicitly triggers a reflection action
-  // (Space key) — we can use their current gaze position as an implicit
-  // training sample since we know they were probably looking at the active
-  // reflection indicator.
   trainAtCurrentGaze(screenX, screenY) {
     if (!this._active || !window.webgazer) return;
     try {
@@ -109,7 +109,12 @@ export class EyeTracker {
     } catch { /* ignore */ }
   }
 
-getGaze() { return this._gaze; }
+  // Returns true once per blink event and resets the flag.
+  consumeBlink() {
+    if (this._blinkPending) { this._blinkPending = false; return true; }
+    return false;
+  }
 
+  getGaze()    { return this._gaze; }
   get active() { return this._active; }
 }

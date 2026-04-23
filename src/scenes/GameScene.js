@@ -220,24 +220,28 @@ export class GameScene extends Phaser.Scene {
       achievements.offUnlock(this._achListener);
       this._gazeTracker?.stop();
       this._gazeDebugText?.destroy();
+      this._saccadeDebugEl?.remove();
     });
 
     // Eye tracking
     this._indicatorData   = [];
-    this._gazeBuffer      = []; // rolling window of recent canvas-space readings
+    this._gazeBaseline    = null;
     this._gazeCooldown    = 0;
-    this._gazeProgressGfx = this.add.graphics().setDepth(200);
-    this._gazeDebugText   = this.add.text(8, 8, '', {
+    this._autoScrollDir   = null;   // last H/V saccade direction for auto-cycle
+    this._autoScrollTimer = 0;
+    this._gazeProgressGfx  = this.add.graphics().setDepth(200);
+    this._gazeDebugText    = this.add.text(8, 8, '', {
       color: '#ffff00', fontFamily: 'monospace', fontSize: '12px',
       stroke: '#000', strokeThickness: 2,
     }).setDepth(201).setScrollFactor(0).setVisible(eyeTracking.isEnabled());
+    this._saccadeDebugEl = this._createSaccadeDebugEl();
     this._gazeTracker     = new EyeTracker();
     this.tKey  = this.input.keyboard.addKey('T');
     this.yKey  = this.input.keyboard.addKey('Y'); // recalibrate
     if (eyeTracking.isEnabled()) {
       await this._gazeTracker.start();
       if (this.levelFile === 'keyboard_controls.xml') {
-        this._gazeTracker.calibrate();
+        this._gazeTracker.calibrate(this._calibrationPoints());
       }
     }
   }
@@ -464,6 +468,7 @@ export class GameScene extends Phaser.Scene {
     const tileW = (dims.widthMeters  * dims.scale) / dims.numRows;
     const tileH = (dims.heightMeters * dims.scale) / dims.numCols;
     const ox = this.offsetX, oy = this.offsetY;
+    this._tileW = tileW; this._tileH = tileH;
 
     // Icons sit on the border-tile column/row, centred between two tiles at the
     // line boundary.  Left border (col 0) hosts H-line icons; bottom border
@@ -706,17 +711,17 @@ export class GameScene extends Phaser.Scene {
     this.handleReflectionInput();
     this.updateSwitches();
     this.updateBlocks();
-    this.updateGazeDwell();
+    this.updateGazeSaccade();
 
     if (Phaser.Input.Keyboard.JustDown(this.tKey)) {
       const now = eyeTracking.toggle();
       if (now) { this._gazeTracker.start(); this._gazeDebugText?.setVisible(true); }
-      else      { this._gazeTracker.stop(); this._gazeProgressGfx?.clear(); this._gazeBuffer = []; this._gazeDebugText?.setVisible(false).setText(''); }
+      else      { this._gazeTracker.stop(); this._gazeProgressGfx?.clear(); this._gazeBaseline = null; this._autoScrollDir = null; this._gazeDebugText?.setVisible(false).setText(''); }
       this._showGazeToggleNotice(now);
     }
     if (Phaser.Input.Keyboard.JustDown(this.yKey) && this._gazeTracker?.active) {
-      this._gazeBuffer = [];
-      this._gazeTracker.calibrate();
+      this._gazeBaseline = null;
+      this._gazeTracker.calibrate(this._calibrationPoints());
     }
 
     // matter.add.sprite auto-syncs position; only flip needs manual update.
@@ -1162,23 +1167,15 @@ export class GameScene extends Phaser.Scene {
     // Player-specific contacts
     const pb = bodyA.label === 'player' ? bodyA : bodyB.label === 'player' ? bodyB : null;
 
-    console.log('Collision:', bodyA.label, bodyB.label);
-
     if (!pb) return;
     const other = pb === bodyA ? bodyB : bodyA;
 
-    console.log('Other label:', other.label);
-    console.log('Other refObj:', other.refObj);
-
     if (other.label === 'Key') {
-      console.log('Key collision detected');
       const k = other.refObj;
       if (k && !k.isDead) this.collectKey(k);
     } else if (other.label === 'Door') {
-      console.log('Door collision detected');
       if (this.level.door?.isOpen) this.triggerWin();
     } else if (other.label === 'Spike') {
-      console.log('Spike collision detected');
       this.checkSpikeDeath(other.refObj, pb.position);
     }
   }
@@ -1455,19 +1452,28 @@ export class GameScene extends Phaser.Scene {
   // Eye tracking gaze dwell
   // -------------------------------------------------------------------------
 
-  updateGazeDwell() {
-    // Rolling-buffer dwell: keep the last BUFFER frames of canvas-space gaze.
-    // A reflection triggers when at least DWELL_FRAC of those frames landed
-    // within HIT_RADIUS of the same indicator. Brief blinks or saccades away
-    // no longer reset progress — the count just dips slightly.
-    const BUFFER     = 90;   // frames (~1.5s at 60fps)
-    const DWELL_FRAC = 0.50; // 50% of buffer must be on-target
-    const HIT_RADIUS = 80;   // px — generous to account for tracker noise
+  updateGazeSaccade() {
+    const SACCADE_X       = 100;
+    const SACCADE_Y       = 60;
+    const BASELINE_A      = 0.005;
+    const BASELINE_SETTLE = 0.10;
+    const COOLDOWN_F      = 30;
+    const AUTO_SCROLL_F   = 120; // frames between auto-cycle steps (~2s at 60fps)
 
     if (!this._gazeTracker?.active) {
       this._gazeProgressGfx?.clear();
       this._gazeDebugText?.setVisible(false).setText('');
+      this._autoScrollDir = null;
       return;
+    }
+
+    // Auto-scroll: advance one line in the last saccade direction every 2s.
+    if (this._autoScrollDir) {
+      this._autoScrollTimer--;
+      if (this._autoScrollTimer <= 0) {
+        this._autoScrollTimer = AUTO_SCROLL_F;
+        this._stepAutoScroll();
+      }
     }
 
     const gaze = this._gazeTracker.getGaze();
@@ -1481,66 +1487,218 @@ export class GameScene extends Phaser.Scene {
     const rect = this.game.canvas.getBoundingClientRect();
     const cx = gaze.x - rect.left;
     const cy = gaze.y - rect.top;
-
     this._gazeDebugText?.setText(
       `EYE: active  vp=(${Math.round(gaze.x)},${Math.round(gaze.y)})  cv=(${Math.round(cx)},${Math.round(cy)})`
     );
 
-    // Debug crosshair at current gaze position.
-    this._gazeProgressGfx.lineStyle(2, 0xffff00, 0.85);
-    this._gazeProgressGfx.strokeCircle(cx, cy, 18);
-    this._gazeProgressGfx.beginPath();
-    this._gazeProgressGfx.moveTo(cx - 14, cy); this._gazeProgressGfx.lineTo(cx + 14, cy);
-    this._gazeProgressGfx.moveTo(cx, cy - 14); this._gazeProgressGfx.lineTo(cx, cy + 14);
-    this._gazeProgressGfx.strokePath();
+    if (!this._gazeBaseline) {
+      this._gazeBaseline = { x: cx, y: cy };
+      return;
+    }
 
-    // Push to rolling buffer.
-    this._gazeBuffer.push({ x: cx, y: cy });
-    if (this._gazeBuffer.length > BUFFER) this._gazeBuffer.shift();
+    if (this._gazeCooldown > 0) {
+      this._gazeCooldown--;
+      this._gazeBaseline.x += BASELINE_SETTLE * (cx - this._gazeBaseline.x);
+      this._gazeBaseline.y += BASELINE_SETTLE * (cy - this._gazeBaseline.y);
+      return;
+    }
 
-    if (this._gazeCooldown > 0) { this._gazeCooldown--; return; }
+    const dx  = cx - this._gazeBaseline.x;
+    const dy  = cy - this._gazeBaseline.y;
+    const adx = Math.abs(dx);
+    const ady = Math.abs(dy);
 
-    // Find the indicator with the most readings in the buffer.
-    let bestHit = null, bestCount = 0;
-    for (const d of this._indicatorData) {
-      if (!d.img.visible) continue;
-      let count = 0;
-      for (const p of this._gazeBuffer) {
-        if (Math.hypot(p.x - d.img.x, p.y - d.img.y) < HIT_RADIUS) count++;
+    if (adx < SACCADE_X && ady < SACCADE_Y) {
+      this._gazeBaseline.x += BASELINE_A * dx;
+      this._gazeBaseline.y += BASELINE_A * dy;
+      return;
+    }
+
+    const level  = this.level;
+    const isDiag = adx > ady * 0.6 && ady > adx * 0.6;
+
+    let label = null;
+    if (isDiag) {
+      const p = (dx * dy < 0) ? -1 : 1;
+      if (level.canReflectDiagonal && level.diagonalLines.length) {
+        const idx = level.diagonalLines.indexOf(p);
+        if (idx !== -1) {
+          level.reflectionOrientation  = 'DIAGONAL';
+          level.reflectionLinePosition = p;
+          level.currentPosInList       = idx;
+          label = `DIAGONAL p=${p}`;
+          this._autoScrollDir = null; // diagonal doesn't auto-scroll
+        }
       }
-      if (count > bestCount) { bestCount = count; bestHit = d; }
+    } else if (ady > adx) {
+      if (!level.canReflectHorizontal || !level.horizontalLines.length) { return; }
+      const dir = dy < 0 ? 'up' : 'down';
+      if (level.reflectionOrientation !== 'HORIZONTAL') {
+        level.reflectionOrientation = 'HORIZONTAL';
+        level.currentPosInList = Math.floor(level.horizontalLines.length / 2);
+      } else {
+        const d = dir === 'up' ? -1 : 1;
+        level.currentPosInList = (level.currentPosInList + d + level.horizontalLines.length) % level.horizontalLines.length;
+      }
+      level.reflectionLinePosition = level.horizontalLines[level.currentPosInList];
+      label = `${dir.toUpperCase()} → HORIZONTAL line=${level.reflectionLinePosition}`;
+      this._autoScrollDir   = dir;
+      this._autoScrollTimer = AUTO_SCROLL_F;
+    } else {
+      if (!level.canReflectVertical || !level.verticalLines.length) { return; }
+      const dir = dx < 0 ? 'left' : 'right';
+      if (level.reflectionOrientation !== 'VERTICAL') {
+        level.reflectionOrientation = 'VERTICAL';
+        level.currentPosInList = Math.floor(level.verticalLines.length / 2);
+      } else {
+        const d = dir === 'left' ? -1 : 1;
+        level.currentPosInList = (level.currentPosInList + d + level.verticalLines.length) % level.verticalLines.length;
+      }
+      level.reflectionLinePosition = level.verticalLines[level.currentPosInList];
+      label = `${dir.toUpperCase()} → VERTICAL line=${level.reflectionLinePosition}`;
+      this._autoScrollDir   = dir;
+      this._autoScrollTimer = AUTO_SCROLL_F;
     }
 
-    if (!bestHit || bestCount < 3) return; // not enough readings near any icon yet
+    if (label) this._drawSaccadeDebug(dx, dy, label);
+    this._gazeCooldown = COOLDOWN_F;
+    this._gazeBaseline = { x: cx, y: cy };
+  }
 
-    const frac = Math.min(bestCount / (BUFFER * DWELL_FRAC), 1);
+  _stepAutoScroll() {
+    const level = this.level;
+    const dir   = this._autoScrollDir;
+    if (!dir) return;
 
-    // Progress arc around the leading indicator.
-    const r = bestHit.size / 2 + 6;
-    this._gazeProgressGfx.lineStyle(3, 0x00ff88, 0.9);
-    this._gazeProgressGfx.beginPath();
-    this._gazeProgressGfx.arc(
-      bestHit.img.x, bestHit.img.y, r,
-      -Math.PI / 2,
-      -Math.PI / 2 + frac * Math.PI * 2,
-      false
-    );
-    this._gazeProgressGfx.strokePath();
-
-    if (frac >= 1) {
-      this._gazeBuffer      = [];
-      this._gazeCooldown    = 90;
-      this.level.reflectionOrientation  = bestHit.orientation;
-      this.level.reflectionLinePosition = bestHit.linePos;
-      this.initReflectionState();
-      this.triggerReflect();
+    if (dir === 'up' || dir === 'down') {
+      if (!level.canReflectHorizontal || !level.horizontalLines.length) return;
+      if (level.reflectionOrientation !== 'HORIZONTAL') return;
+      const d = dir === 'up' ? -1 : 1;
+      level.currentPosInList = (level.currentPosInList + d + level.horizontalLines.length) % level.horizontalLines.length;
+      level.reflectionLinePosition = level.horizontalLines[level.currentPosInList];
+    } else {
+      if (!level.canReflectVertical || !level.verticalLines.length) return;
+      if (level.reflectionOrientation !== 'VERTICAL') return;
+      const d = dir === 'left' ? -1 : 1;
+      level.currentPosInList = (level.currentPosInList + d + level.verticalLines.length) % level.verticalLines.length;
+      level.reflectionLinePosition = level.verticalLines[level.currentPosInList];
     }
+    console.log(`AUTO-SCROLL ${dir}  line=${level.reflectionLinePosition}`);
+  }
+
+  _createSaccadeDebugEl() {
+    const el = document.createElement('div');
+    el.style.cssText = [
+      'position:fixed', 'top:12px', 'right:12px',
+      'background:rgba(0,0,0,0.75)', 'border:1px solid #444',
+      'padding:6px', 'font-family:monospace', 'font-size:11px',
+      'color:#fff', 'z-index:9998', 'pointer-events:none',
+      'display:none',
+    ].join(';');
+
+    const canvas = document.createElement('canvas');
+    canvas.width  = 150;
+    canvas.height = 150;
+    el.appendChild(canvas);
+
+    const txt = document.createElement('div');
+    txt.style.cssText = 'margin-top:4px;line-height:1.5;white-space:pre';
+    el.appendChild(txt);
+
+    document.body.appendChild(el);
+    el._canvas = canvas;
+    el._txt    = txt;
+    return el;
+  }
+
+  _drawSaccadeDebug(dx, dy, label) {
+    const el = this._saccadeDebugEl;
+    if (!el) return;
+    el.style.display = 'block';
+
+    const BOX = 150;
+    const canvas = el._canvas;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, BOX, BOX);
+
+    const cx = BOX / 2, cy = BOX / 2;
+
+    // Background + crosshair.
+    ctx.fillStyle = 'rgba(0,0,0,0)';
+    ctx.fillRect(0, 0, BOX, BOX);
+    ctx.strokeStyle = '#333';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(0, cy); ctx.lineTo(BOX, cy);
+    ctx.moveTo(cx, 0); ctx.lineTo(cx, BOX);
+    ctx.stroke();
+
+    // Arrow.
+    const adx = Math.abs(dx), ady = Math.abs(dy);
+    const maxComp = Math.max(adx, ady, 1);
+    const scale   = (BOX / 2 - 12) / maxComp;
+    const ex = cx + dx * scale;
+    const ey = cy + dy * scale;
+
+    ctx.strokeStyle = '#00ff88';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(ex, ey);
+    ctx.stroke();
+
+    // Arrowhead.
+    const angle  = Math.atan2(ey - cy, ex - cx);
+    const alen   = 10;
+    const spread = 0.45;
+    ctx.fillStyle = '#00ff88';
+    ctx.beginPath();
+    ctx.moveTo(ex, ey);
+    ctx.lineTo(ex - alen * Math.cos(angle - spread), ey - alen * Math.sin(angle - spread));
+    ctx.lineTo(ex - alen * Math.cos(angle + spread), ey - alen * Math.sin(angle + spread));
+    ctx.closePath();
+    ctx.fill();
+
+    // Origin dot.
+    ctx.fillStyle = '#fff';
+    ctx.beginPath();
+    ctx.arc(cx, cy, 3, 0, Math.PI * 2);
+    ctx.fill();
+
+    el._txt.textContent = `${label}\ndx=${Math.round(dx)}  dy=${Math.round(dy)}`;
+  }
+
+  _calibrationPoints() {
+    // Build screen-space calibration positions along the left column (H-line
+    // indicators) and bottom row (V-line indicators) of the game grid.
+    // Each tile centre on those two edges becomes one calibration dot.
+    const rect  = this.game.canvas.getBoundingClientRect();
+    const scaleX = rect.width  / this.game.canvas.width;
+    const scaleY = rect.height / this.game.canvas.height;
+    const ox = this.offsetX, oy = this.offsetY;
+    const tileW = this._tileW ?? 32, tileH = this._tileH ?? 32;
+    const dims = this.level?.dims;
+    const numRows = dims?.numRows ?? 20;
+    const numCols = dims?.numCols ?? 20;
+    const pts = [];
+    // 3×3 grid on the border and center of the game grid.
+    const gridW = numCols * tileW;
+    const gridH = numRows * tileH;
+    for (const fy of [0, 0.5, 1]) {
+      for (const fx of [0, 0.5, 1]) {
+        pts.push({
+          x: rect.left + (ox + fx * gridW) * scaleX,
+          y: rect.top  + (oy + fy * gridH) * scaleY,
+        });
+      }
+    }
+    return pts;
   }
 
   _showGazeToggleNotice(enabled) {
     const { width: sw, height: sh } = this.scale;
     const banner = this.add.text(sw / 2, sh * 0.18,
-      enabled ? 'Eye tracking ON\n(look at umbrella for 1s to reflect)' : 'Eye tracking OFF', {
+      enabled ? 'Eye tracking ON\n(move eyes to select reflection line)' : 'Eye tracking OFF', {
         color: enabled ? '#00ff88' : '#ff8888',
         fontFamily: 'monospace', fontSize: '16px',
         align: 'center', stroke: '#000000', strokeThickness: 3
