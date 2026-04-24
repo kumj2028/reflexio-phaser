@@ -1,0 +1,125 @@
+\documentclass{beamer}
+
+\usetheme{Madrid}
+
+\title{How to Ruin a Perfectly Good Game with Eye Tracking}
+\author{Mengxiang Jiang\\
+CSCE 624: Sketch Recognition}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}{What is Reflexio?}
+\begin{itemize}
+    \item Puzzle game
+    \item Made during undergrad game design class
+    \item Reflection mechanics
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Goal}
+\begin{itemize}
+    \item Convert game to javaScript to run in browser
+    \item Add eye tracking to select reflection lines
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Tech Stack}
+\begin{itemize}
+    \item Ported C\# $\rightarrow$ JavaScript
+    \item WebGazer.js
+    \item Webcam-based tracking
+    \item Fully browser-based
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Attempt 1: Look to Select}
+\begin{itemize}
+    \item Look at umbrella indicator
+    \item Toggle reflection line
+    \item Most straightforward approach
+\end{itemize}
+\end{frame}
+
+\begin{frame}{The First Problem}
+\begin{itemize}
+    \item $\sim$100px error
+    \item Small targets
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Possible solution: Kalman Filter}
+\begin{itemize}
+    \item Essentially an HMM
+    \item Uses the last predicted state and the current observation
+    \item Can smooth out noise
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Not good enough}
+\begin{itemize}
+    \item Error $\sim$50px
+    \item Still unusable
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Attempt 3: Saccades}
+\begin{itemize}
+    \item Use eye movement direction
+    \item Left, right, up, down, and diagonals
+    \item Discrete input
+    \item Less precision required
+\end{itemize}
+\end{frame}
+
+\begin{frame}{New Problem}
+\begin{itemize}
+    \item Hard to repeat same saccade
+    \item Inconsistent motion
+    \item Opposite saccade happens
+    \item Undoes previous action
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Attempt 4: Auto Cycling}
+\begin{itemize}
+    \item Detect direction once
+    \item Cycle every 2s
+    \item Reduce repetition
+\end{itemize}
+\end{frame}
+
+\begin{frame}{User Experience}
+\begin{itemize}
+    \item Slow to get the reflection line you want
+    \item Unreliable input that can toggle the wrong line
+    \item Mentally exhausting
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Comparison: Keyboard or Controller}
+\begin{itemize}
+    \item Instant input
+    \item Reliable
+    \item Allows focusing on the game, not the controls
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Key Lessons}
+\begin{itemize}
+    \item Consistency $>$ novelty
+    \item Webcam eye tracking and precision input are mutually exclusive
+    \item Bad User experience kills the gameplay
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Conclusion}
+\begin{itemize}
+    \item Eye tracking ruined UX
+    \item Cool idea, bad fit
+\end{itemize}
+\end{frame}
+
+\end{document}

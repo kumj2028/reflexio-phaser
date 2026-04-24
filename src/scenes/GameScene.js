@@ -904,8 +904,10 @@ export class GameScene extends Phaser.Scene {
     }
     if (reflectedTiles.size === 0) return;
 
+    const indestructible = new Set(['Key', 'Door']);
     const toDestroy = [];
     for (const obj of this.level.objects) {
+      if (indestructible.has(obj.typeName)) continue;
       if (!obj.isReflectable && !obj.isBeingReflected && obj.body && obj.sprite) {
         if (reflectedTiles.has(`${obj.discX},${obj.discY}`)) toDestroy.push(obj);
       }
@@ -1457,7 +1459,7 @@ export class GameScene extends Phaser.Scene {
     const SACCADE_Y       = 60;
     const BASELINE_A      = 0.005;
     const BASELINE_SETTLE = 0.10;
-    const COOLDOWN_F      = 30;
+    const COOLDOWN_F      = 120;
     const AUTO_SCROLL_F   = 120; // frames between auto-cycle steps (~2s at 60fps)
 
     if (!this._gazeTracker?.active) {
