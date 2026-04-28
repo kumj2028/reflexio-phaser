@@ -43,29 +43,34 @@ export function createTouchOverlay(canvas, mode, callbacks = {}) {
   ].join(';');
   document.body.appendChild(wrap);
 
-  // ---- Eye toggle + Calibrate — top-right, side by side ----
-  const eyeOn  = callbacks.initialEyeOn ?? false;
-  const eyeBtn = _makeSmallBtn(
-    eyeOn ? 'EYE: ON' : 'EYE: OFF',
-    eyeOn ? 'rgba(30,160,80,0.85)' : 'rgba(50,50,50,0.85)',
-    (el) => { if (callbacks.onToggleEye) callbacks.onToggleEye(el); }
-  );
-  eyeBtn.style.pointerEvents = 'auto';
+  // ---- Eye toggle + Calibrate — top-right, desktop only ----
+  const isMobile = window.matchMedia('(pointer: coarse)').matches;
+  let eyeBtn = null;
 
-  const calBtn = _makeSmallBtn('CALIBRATE', 'rgba(40,40,100,0.85)',
-    (el) => { if (callbacks.onCalibrate) callbacks.onCalibrate(el); }
-  );
-  calBtn.style.pointerEvents = 'auto';
+  if (!isMobile) {
+    const eyeOn = callbacks.initialEyeOn ?? false;
+    eyeBtn = _makeSmallBtn(
+      eyeOn ? 'EYE: ON' : 'EYE: OFF',
+      eyeOn ? 'rgba(30,160,80,0.85)' : 'rgba(50,50,50,0.85)',
+      (el) => { if (callbacks.onToggleEye) callbacks.onToggleEye(el); }
+    );
+    eyeBtn.style.pointerEvents = 'auto';
 
-  const topRow = document.createElement('div');
-  topRow.style.cssText = [
-    'position:fixed', 'top:8px', `right:${topRightOffset}px`,
-    'display:flex', 'flex-direction:row', 'gap:6px', 'align-items:center',
-    'pointer-events:none',
-  ].join(';');
-  topRow.appendChild(eyeBtn);
-  topRow.appendChild(calBtn);
-  wrap.appendChild(topRow);
+    const calBtn = _makeSmallBtn('CALIBRATE', 'rgba(40,40,100,0.85)',
+      (el) => { if (callbacks.onCalibrate) callbacks.onCalibrate(el); }
+    );
+    calBtn.style.pointerEvents = 'auto';
+
+    const topRow = document.createElement('div');
+    topRow.style.cssText = [
+      'position:fixed', 'top:8px', `right:${topRightOffset}px`,
+      'display:flex', 'flex-direction:row', 'gap:6px', 'align-items:center',
+      'pointer-events:none',
+    ].join(';');
+    topRow.appendChild(eyeBtn);
+    topRow.appendChild(calBtn);
+    wrap.appendChild(topRow);
+  }
 
   // ---- Left D-pad — centred in left side space, vertically centred ----
   const leftCb = (dir, on) => {
