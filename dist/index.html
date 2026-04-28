@@ -28,6 +28,9 @@
       position: relative;
       touch-action: none;
     }
+    canvas {
+      touch-action: none;
+    }
 
     /* Portrait overlay — asks the user to rotate */
     #rotate-prompt {
@@ -81,6 +84,12 @@
     document.addEventListener('DOMContentLoaded', lockLandscape);
     document.addEventListener('click', lockLandscape, { once: true });
     document.addEventListener('touchstart', lockLandscape, { once: true });
+
+    // Block all browser touch gestures (scroll, zoom) globally.
+    document.addEventListener('touchstart',  (e) => e.preventDefault(), { passive: false });
+    document.addEventListener('touchmove',   (e) => e.preventDefault(), { passive: false });
+    document.addEventListener('touchend',    (e) => e.preventDefault(), { passive: false });
+    document.addEventListener('gesturestart',(e) => e.preventDefault(), { passive: false });
   </script>
 </body>
 </html>
