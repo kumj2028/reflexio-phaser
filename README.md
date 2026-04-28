@@ -21,22 +21,9 @@ public/
   audio/       MP3 music and SFX (usable directly in browser)
 src/
   main.js                  Phaser game config + boot
-  loader/
-    textureRegistry.js     logical name -> file path (port of texture_files[])
-    audioRegistry.js       logical name -> file path (port of music_files[])
-    levelList.js           ordered level list (port of level_files[])
-    levelLoader.js         XML -> game objects (port of LevelCreator.cs)
-  objects/
-    Level.js               top-level container (port of Level.cs API)
-    ReflectableObject.js   base class for grid-bound objects
-    ReflectableAndOrientable.js  base for direction-facing objects
-    Wall.js, Block.js, Spike.js, Switch.js, Key.js, Door.js, Player.js
-    index.js               barrel that triggers registerClass side effects
-  scenes/
-    PreloadScene.js        loads every texture in the registry
-    TestScene.js           Session 1 deliverable - static level render
-  util/
-    coords.js              tile/meters/pixel conversion (LevelDims)
+  loader/                  Loading levels, images, music, etc.
+  objects/                 Various game objects
+  scenes/                  Rendering scenes in the game                
 ```
 
 ## Notes from the porting work
