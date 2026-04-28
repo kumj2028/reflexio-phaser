@@ -1,41 +1,31 @@
 /**
  * Shared DOM touch overlay for Reflexio scenes.
  * Uses Pointer Events (works for both touch and mouse).
+ * All positions expressed in viewport units / CSS calc() — no getBoundingClientRect().
+ *
+ * Canvas is 800×700 with Phaser Scale.FIT + CENTER_BOTH.
+ * In landscape (screen wider than 800:700 ratio):
+ *   canvas is height-limited → canvas_width = 100vh * 800/700
+ *   side margin = max(0, 50vw - 400vh/7)
+ *   left-space-center  (--lcx) = max(0px, 25vw - 200vh/7)
+ *   right-space-center (--rcx) = min(100vw, 75vw + 200vh/7)
  *
  * createTouchOverlay(canvas, mode, callbacks) → { el, state, eyeBtn, destroy }
- *
- * Always-present buttons (same layout in all modes):
- *   - Eye toggle + Calibrate  top-right, side by side, right-offset by callbacks.topRightOffset
- *   - Menu                    below left D-pad
- *
- * mode 'game':
- *   - Left D-pad (4-way): held booleans state.left/right/up/down
- *   - Right D-pad (8-way): calls callbacks.onReflectLine(dir) on direction change
- *   - A button: one-shot state.reflect flag
- *   - B button: one-shot state.grab flag
- *
- * mode 'menu':
- *   - Left D-pad (4-way): calls callbacks.onUp/onDown once per direction change
- *   - Right D-pad (up/down sectors): also calls callbacks.onUp/onDown
- *   - A button: calls callbacks.onConfirm()
- *   - B button: calls callbacks.onBack()
- *
- * syncEyeBtn(el, isOn): update the eye toggle button appearance after an external toggle.
+ * syncEyeBtn(el, isOn): update eye toggle appearance.
  */
 
-const DPAD    = 140;
-const BTN     = 72;
-const GAP     = 10;
-const BTN_GAP = 25; // gap between each D-pad bottom and its associated buttons
+const DPAD    = 140;   // D-pad square size (px)
+const BTN     = 72;    // A/B button diameter (px)
+const GAP     = 10;    // gap between A and B
+const BTN_GAP = 25;    // gap between D-pad bottom edge and its associated buttons
+
+// Vertical layout constants (offsets from 50vh)
+const DPAD_HALF = DPAD / 2;                               // 70
+const R_TOP_OFF = -((DPAD + BTN_GAP + BTN) / 2);         // -118.5
+const AB_TOP_OFF = R_TOP_OFF + DPAD + BTN_GAP;            // 46.5
+const MENU_TOP_OFF = DPAD_HALF + BTN_GAP;                 // 95
 
 export function createTouchOverlay(canvas, mode, callbacks = {}) {
-  const rect = canvas.getBoundingClientRect();
-  const vpW  = window.innerWidth;
-  const vpH  = window.innerHeight;
-
-  const leftCX        = rect.left / 2;
-  const rightCX       = rect.right + (vpW - rect.right) / 2;
-  const midY          = vpH / 2;
   const topRightOffset = callbacks.topRightOffset ?? 8;
 
   const state = {
@@ -43,12 +33,18 @@ export function createTouchOverlay(canvas, mode, callbacks = {}) {
     reflect: false, grab: false,
   };
 
+  // --lcx / --rcx are the horizontal centres of the left and right side spaces.
   const wrap = document.createElement('div');
-  wrap.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:5000;';
+  wrap.style.cssText = [
+    'position:fixed', 'top:0', 'left:0', 'width:100%', 'height:100%',
+    'pointer-events:none', 'z-index:5000',
+    '--lcx:max(0px,calc(25vw - 200vh/7))',
+    '--rcx:min(100vw,calc(75vw + 200vh/7))',
+  ].join(';');
   document.body.appendChild(wrap);
 
   // ---- Eye toggle + Calibrate — top-right, side by side ----
-  const eyeOn = callbacks.initialEyeOn ?? false;
+  const eyeOn  = callbacks.initialEyeOn ?? false;
   const eyeBtn = _makeSmallBtn(
     eyeOn ? 'EYE: ON' : 'EYE: OFF',
     eyeOn ? 'rgba(30,160,80,0.85)' : 'rgba(50,50,50,0.85)',
@@ -61,10 +57,9 @@ export function createTouchOverlay(canvas, mode, callbacks = {}) {
   );
   calBtn.style.pointerEvents = 'auto';
 
-  // Flex row container holds both buttons; right edge anchored next to saccade display
   const topRow = document.createElement('div');
   topRow.style.cssText = [
-    'position:fixed', `top:8px`, `right:${topRightOffset}px`,
+    'position:fixed', 'top:8px', `right:${topRightOffset}px`,
     'display:flex', 'flex-direction:row', 'gap:6px', 'align-items:center',
     'pointer-events:none',
   ].join(';');
@@ -72,9 +67,8 @@ export function createTouchOverlay(canvas, mode, callbacks = {}) {
   topRow.appendChild(calBtn);
   wrap.appendChild(topRow);
 
-  // ---- Left D-pad (4-way) — vertically centered in left space ----
-  const dpadTop = midY - DPAD / 2;
-  const leftCb  = (dir, on) => {
+  // ---- Left D-pad — centred in left side space, vertically centred ----
+  const leftCb = (dir, on) => {
     if (mode === 'game') {
       if (dir === 'l') state.left  = on;
       if (dir === 'r') state.right = on;
@@ -87,20 +81,17 @@ export function createTouchOverlay(canvas, mode, callbacks = {}) {
     }
   };
   const leftDpad = _makeDpad(DPAD, false, leftCb);
-  _placeFixed(leftDpad, leftCX - DPAD / 2, dpadTop, null, null);
+  leftDpad.style.cssText += `;position:fixed;left:calc(var(--lcx) - ${DPAD_HALF}px);top:calc(50vh - ${DPAD_HALF}px);pointer-events:auto;`;
   wrap.appendChild(leftDpad);
 
-  // ---- Menu button — below left D-pad ----
+  // ---- Menu button — centred below left D-pad ----
   const menuBtn = _makeMedBtn('MENU', 'rgba(70,30,90,0.85)',
     () => { if (callbacks.onMenu) callbacks.onMenu(); }
   );
-  _placeFixed(menuBtn, leftCX - 44, dpadTop + DPAD + BTN_GAP, null, null);
+  menuBtn.style.cssText += `;position:fixed;left:var(--lcx);top:calc(50vh + ${MENU_TOP_OFF}px);transform:translateX(-50%);pointer-events:auto;`;
   wrap.appendChild(menuBtn);
 
-  // ---- Right D-pad + A/B — same physical layout in all modes ----
-  const totalH = DPAD + BTN_GAP + BTN;
-  const rTop   = midY - totalH / 2;
-
+  // ---- Right D-pad + A/B — same layout in all modes ----
   const RDIR = {
     u:'up', d:'down', l:'left', r:'right',
     ul:'diagonal', ur:'diagonal', dl:'diagonal', dr:'diagonal',
@@ -121,28 +112,27 @@ export function createTouchOverlay(canvas, mode, callbacks = {}) {
       if ((dir === 'd' || dir === 'dl' || dir === 'dr') && callbacks.onDown) callbacks.onDown();
     }
   });
-  _placeFixed(rightDpad, rightCX - DPAD / 2, rTop, null, null);
+  rightDpad.style.cssText += `;position:fixed;left:calc(var(--rcx) - ${DPAD_HALF}px);top:calc(50vh + ${R_TOP_OFF}px);pointer-events:auto;`;
   wrap.appendChild(rightDpad);
 
-  const btnsTop = rTop + DPAD + BTN_GAP;
+  // A and B side by side below right D-pad
   const aBtn = _makeBtn('A', '#336acc', () => {
     if (mode === 'game') { state.reflect = true; }
     else if (callbacks.onConfirm) callbacks.onConfirm();
   });
-  _placeFixed(aBtn, rightCX - BTN - GAP / 2, btnsTop, null, null);
+  aBtn.style.cssText += `;position:fixed;left:calc(var(--rcx) - ${BTN + GAP / 2}px);top:calc(50vh + ${AB_TOP_OFF}px);pointer-events:auto;`;
   wrap.appendChild(aBtn);
 
   const bBtn = _makeBtn('B', '#cc3333', () => {
     if (mode === 'game') { state.grab = true; }
     else if (callbacks.onBack) callbacks.onBack();
   });
-  _placeFixed(bBtn, rightCX + GAP / 2, btnsTop, null, null);
+  bBtn.style.cssText += `;position:fixed;left:calc(var(--rcx) + ${GAP / 2}px);top:calc(50vh + ${AB_TOP_OFF}px);pointer-events:auto;`;
   wrap.appendChild(bBtn);
 
   return { el: wrap, state, eyeBtn, destroy: () => wrap.remove() };
 }
 
-/** Update the eye toggle button label and color to match the given state. */
 export function syncEyeBtn(el, isOn) {
   if (!el) return;
   el.textContent      = isOn ? 'EYE: ON' : 'EYE: OFF';
@@ -150,15 +140,6 @@ export function syncEyeBtn(el, isOn) {
 }
 
 // ---- helpers ----------------------------------------------------------------
-
-function _placeFixed(el, left, top, right, bottom) {
-  el.style.position      = 'fixed';
-  el.style.pointerEvents = 'auto';
-  if (left   !== null) el.style.left   = `${Math.round(left)}px`;
-  if (top    !== null) el.style.top    = `${Math.round(top)}px`;
-  if (right  !== null) el.style.right  = `${Math.round(right)}px`;
-  if (bottom !== null) el.style.bottom = `${Math.round(bottom)}px`;
-}
 
 function _makeDpad(size, eightWay, cb) {
   const el = document.createElement('div');
@@ -244,7 +225,6 @@ function _makeBtn(label, color, cb) {
   return el;
 }
 
-// Medium-sized pill button (for MENU label)
 function _makeMedBtn(label, bgColor, cb) {
   const el = document.createElement('div');
   el.style.cssText = [

@@ -1716,12 +1716,13 @@ export class GameScene extends Phaser.Scene {
 
   _openPauseMenu() {
     if (this.gameWon || this.gameDead) return;
-    this.scene.pause('GameScene');
     this.scene.launch('PauseScene', {
       gameSceneKey: 'GameScene',
       levelFile:    this.levelFile,
       levelIdx:     this.levelIdx,
     });
+    this.scene.bringToTop('PauseScene');
+    this.scene.pause();
   }
 
   _doToggleEye(btn) {
