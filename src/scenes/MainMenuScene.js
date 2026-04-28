@@ -1,6 +1,8 @@
 import Phaser from 'phaser';
 import { progress } from '../state/ProgressState.js';
 import { LEVEL_LIST } from '../loader/levelList.js';
+import { createTouchOverlay, syncEyeBtn } from '../ui/touchOverlay.js';
+import { eyeTracking } from '../state/EyeTrackingState.js';
 
 // Convert 650-unit reference space to screen pixels.
 function makeToScreen(sw, sh) {
@@ -63,6 +65,19 @@ export class MainMenuScene extends Phaser.Scene {
     this.cursors  = this.input.keyboard.createCursorKeys();
     this.enterKey = this.input.keyboard.addKey('ENTER');
     this.spaceKey = this.input.keyboard.addKey('SPACE');
+
+    const _to = createTouchOverlay(this.game.canvas, 'menu', {
+      initialEyeOn: eyeTracking.isEnabled(),
+      onUp:         () => { this._move(-1); },
+      onDown:       () => { this._move(1); },
+      onConfirm:    () => { this._select(); },
+      onBack:       () => { this.scene.start('SplashScene'); },
+      onMenu:       () => { this.scene.start('SplashScene'); },
+      onToggleEye:  (el) => { syncEyeBtn(el, eyeTracking.toggle()); },
+      onCalibrate:  () => { /* calibration only available in-game */ },
+    });
+    this._touch = _to;
+    this.events.once('shutdown', () => this._touch?.destroy());
   }
 
   _startBgm() {
@@ -75,24 +90,21 @@ export class MainMenuScene extends Phaser.Scene {
     } catch { /* audio unavailable */ }
   }
 
-  update() {
-    const { JustDown } = Phaser.Input.Keyboard;
+  _move(delta) {
     const prev = this._current;
-
-    if (JustDown(this.cursors.up)) {
-      this._current = (this._current - 1 + this._items.length) % this._items.length;
-    } else if (JustDown(this.cursors.down)) {
-      this._current = (this._current + 1) % this._items.length;
-    } else if (JustDown(this.enterKey) || JustDown(this.spaceKey)) {
-      this._select();
-      return;
-    }
-
+    this._current = (this._current + delta + this._items.length) % this._items.length;
     if (this._current !== prev) {
       this._sprites[prev].setTexture(this._items[prev].offKey);
       this._sprites[this._current].setTexture(this._items[this._current].onKey);
       this._playClick();
     }
+  }
+
+  update() {
+    const { JustDown } = Phaser.Input.Keyboard;
+    if (JustDown(this.cursors.up))   { this._move(-1); return; }
+    if (JustDown(this.cursors.down)) { this._move(1);  return; }
+    if (JustDown(this.enterKey) || JustDown(this.spaceKey)) { this._select(); }
   }
 
   _playClick() {

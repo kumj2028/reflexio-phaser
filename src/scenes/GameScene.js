@@ -11,6 +11,7 @@ import { progress } from '../state/ProgressState.js';
 import { achievements } from '../state/AchievementState.js';
 import { EyeTracker } from '../eye/EyeTracker.js';
 import { eyeTracking } from '../state/EyeTrackingState.js';
+import { createTouchOverlay, syncEyeBtn } from '../ui/touchOverlay.js';
 
 // Physics constants ported from Player.cs / PlayerController.cs.
 // Converted to pixel-space: multiply original m/s or N values by SCALE (50 px/m).
@@ -221,6 +222,7 @@ export class GameScene extends Phaser.Scene {
       this._gazeTracker?.stop();
       this._gazeDebugText?.destroy();
       this._saccadeDebugEl?.remove();
+      this._touchWrap?.remove();
     });
 
     // Eye tracking
@@ -236,6 +238,24 @@ export class GameScene extends Phaser.Scene {
     }).setDepth(201).setScrollFactor(0).setVisible(eyeTracking.isEnabled());
     this._saccadeDebugEl = this._createSaccadeDebugEl();
     this._gazeTracker     = new EyeTracker();
+
+    // Touch controls
+    const _to = createTouchOverlay(this.game.canvas, 'game', {
+      initialEyeOn:   eyeTracking.isEnabled(),
+      topRightOffset: 182,   // reserve space for saccade debug display
+      onReflectLine:  dir  => this.moveReflectionLine(dir),
+      onToggleEye:    (el) => this._doToggleEye(el),
+      onCalibrate:    ()   => this._doCalibrate(),
+      onMenu:         ()   => this._openPauseMenu(),
+    });
+    this._touchInput = _to.state;
+    this._touchWrap  = _to.el;
+    this._eyeBtn     = _to.eyeBtn;
+
+    // Hide touch overlay while PauseScene is on top; restore on resume.
+    this.events.on('pause',  () => { if (this._touchWrap) this._touchWrap.style.display = 'none'; });
+    this.events.on('resume', () => { if (this._touchWrap) this._touchWrap.style.display = ''; });
+
     this.tKey  = this.input.keyboard.addKey('T');
     this.yKey  = this.input.keyboard.addKey('Y'); // recalibrate
     if (eyeTracking.isEnabled()) {
@@ -713,16 +733,8 @@ export class GameScene extends Phaser.Scene {
     this.updateBlocks();
     this.updateGazeSaccade();
 
-    if (Phaser.Input.Keyboard.JustDown(this.tKey)) {
-      const now = eyeTracking.toggle();
-      if (now) { this._gazeTracker.start(); this._gazeDebugText?.setVisible(true); }
-      else      { this._gazeTracker.stop(); this._gazeProgressGfx?.clear(); this._gazeBaseline = null; this._autoScrollDir = null; this._gazeDebugText?.setVisible(false).setText(''); }
-      this._showGazeToggleNotice(now);
-    }
-    if (Phaser.Input.Keyboard.JustDown(this.yKey) && this._gazeTracker?.active) {
-      this._gazeBaseline = null;
-      this._gazeTracker.calibrate(this._calibrationPoints());
-    }
+    if (Phaser.Input.Keyboard.JustDown(this.tKey)) this._doToggleEye(this._eyeBtn);
+    if (Phaser.Input.Keyboard.JustDown(this.yKey)) this._doCalibrate();
 
     // matter.add.sprite auto-syncs position; only flip needs manual update.
     this.playerSprite.setFlipX(!this.playerData.facingRight);
@@ -741,8 +753,9 @@ export class GameScene extends Phaser.Scene {
       return;
     }
 
-    const left  = cursors.left.isDown  && !cursors.right.isDown;
-    const right  = cursors.right.isDown && !cursors.left.isDown;
+    const ti    = this._touchInput;
+    const left  = (cursors.left.isDown  || ti.left)  && !(cursors.right.isDown || ti.right);
+    const right = (cursors.right.isDown || ti.right) && !(cursors.left.isDown  || ti.left);
     let newVelX = vel.x;
     let walking  = false;
 
@@ -778,7 +791,7 @@ export class GameScene extends Phaser.Scene {
     playerBody.positionPrev.x = playerBody.position.x - newVelX;
 
     // Jump: apply upward velocity; cooldown prevents rapid re-triggering.
-    if (cursors.up.isDown && playerData.isGrounded && playerData.jumpCooldown === 0) {
+    if ((cursors.up.isDown || ti.up) && playerData.isGrounded && playerData.jumpCooldown === 0) {
       Matter.Body.setVelocity(playerBody, { x: newVelX, y: -JUMP_SPEED });
       playerData.jumpCooldown = JUMP_COOLDOWN;
       try { this.sound.play('jumpMusic'); } catch { /* ignore */ }
@@ -818,7 +831,9 @@ export class GameScene extends Phaser.Scene {
 
   handleReflectionInput() {
     const JD = Phaser.Input.Keyboard.JustDown;
-    if (JD(this.reflectKey)) {
+    const reflectTouch = this._touchInput.reflect;
+    if (reflectTouch) this._touchInput.reflect = false;
+    if (JD(this.reflectKey) || reflectTouch) {
       // Implicit training: the user is looking at the active reflection indicator
       // while pressing Space, so their current gaze is a training sample for that
       // indicator's screen position.
@@ -1295,7 +1310,9 @@ export class GameScene extends Phaser.Scene {
   }
 
   handleBlockGrab() {
-    if (!Phaser.Input.Keyboard.JustDown(this.eKey)) return;
+    const grabTouch = this._touchInput.grab;
+    if (grabTouch) this._touchInput.grab = false;
+    if (!Phaser.Input.Keyboard.JustDown(this.eKey) && !grabTouch) return;
     if (this.grabbedBlock) {
       this.releaseBlock();
     } else {
@@ -1695,6 +1712,38 @@ export class GameScene extends Phaser.Scene {
       }
     }
     return pts;
+  }
+
+  _openPauseMenu() {
+    if (this.gameWon || this.gameDead) return;
+    this.scene.pause('GameScene');
+    this.scene.launch('PauseScene', {
+      gameSceneKey: 'GameScene',
+      levelFile:    this.levelFile,
+      levelIdx:     this.levelIdx,
+    });
+  }
+
+  _doToggleEye(btn) {
+    const now = eyeTracking.toggle();
+    if (now) {
+      this._gazeTracker.start();
+      this._gazeDebugText?.setVisible(true);
+    } else {
+      this._gazeTracker.stop();
+      this._gazeProgressGfx?.clear();
+      this._gazeBaseline   = null;
+      this._autoScrollDir  = null;
+      this._gazeDebugText?.setVisible(false).setText('');
+    }
+    syncEyeBtn(btn ?? this._eyeBtn, now);
+    this._showGazeToggleNotice(now);
+  }
+
+  _doCalibrate() {
+    if (!this._gazeTracker?.active) return;
+    this._gazeBaseline = null;
+    this._gazeTracker.calibrate(this._calibrationPoints());
   }
 
   _showGazeToggleNotice(enabled) {

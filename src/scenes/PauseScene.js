@@ -1,4 +1,6 @@
 import Phaser from 'phaser';
+import { createTouchOverlay, syncEyeBtn } from '../ui/touchOverlay.js';
+import { eyeTracking } from '../state/EyeTrackingState.js';
 
 function makeToScreen(sw, sh) {
   const s = Math.min(sw / 650, sh / 650, 1);
@@ -50,28 +52,37 @@ export class PauseScene extends Phaser.Scene {
     this.enterKey = this.input.keyboard.addKey('ENTER');
     this.spaceKey = this.input.keyboard.addKey('SPACE');
     this.escKey   = this.input.keyboard.addKey('ESC');
+
+    const _to = createTouchOverlay(this.game.canvas, 'menu', {
+      initialEyeOn: eyeTracking.isEnabled(),
+      topRightOffset: 182,
+      onUp:         () => { this._move(-1); },
+      onDown:       () => { this._move(1); },
+      onConfirm:    () => { this._select(); },
+      onBack:       () => { if (!this._noResume) this._resume(); },
+      onMenu:       () => { if (!this._noResume) this._resume(); },
+      onToggleEye:  (el) => { syncEyeBtn(el, eyeTracking.toggle()); },
+      onCalibrate:  () => { /* calibration available in game, not pause */ },
+    });
+    this._touch = _to;
+    this.events.once('shutdown', () => this._touch?.destroy());
   }
 
-  update() {
-    const { JustDown } = Phaser.Input.Keyboard;
+  _move(delta) {
     const prev = this._current;
-
-    if (JustDown(this.escKey) && !this._noResume) {
-      this._resume();
-      return;
-    } else if (JustDown(this.cursors.up)) {
-      this._current = (this._current - 1 + this._items.length) % this._items.length;
-    } else if (JustDown(this.cursors.down)) {
-      this._current = (this._current + 1) % this._items.length;
-    } else if (JustDown(this.enterKey) || JustDown(this.spaceKey)) {
-      this._select();
-      return;
-    }
-
+    this._current = (this._current + delta + this._items.length) % this._items.length;
     if (this._current !== prev) {
       this._sprites[prev].setTexture(this._items[prev].offKey);
       this._sprites[this._current].setTexture(this._items[this._current].onKey);
     }
+  }
+
+  update() {
+    const { JustDown } = Phaser.Input.Keyboard;
+    if (JustDown(this.escKey) && !this._noResume) { this._resume(); return; }
+    if (JustDown(this.cursors.up))   { this._move(-1); return; }
+    if (JustDown(this.cursors.down)) { this._move(1);  return; }
+    if (JustDown(this.enterKey) || JustDown(this.spaceKey)) { this._select(); }
   }
 
   _select() {

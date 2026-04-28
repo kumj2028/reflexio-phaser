@@ -1,6 +1,8 @@
 import Phaser from 'phaser';
 import { LEVEL_LIST } from '../loader/levelList.js';
 import { progress } from '../state/ProgressState.js';
+import { createTouchOverlay, syncEyeBtn } from '../ui/touchOverlay.js';
+import { eyeTracking } from '../state/EyeTrackingState.js';
 
 // Coordinate helper: 650-unit design space → screen pixels
 function makeToScreen(sw, sh) {
@@ -98,6 +100,19 @@ export class WorldMenuScene extends Phaser.Scene {
     this.enterKey = this.input.keyboard.addKey('ENTER');
     this.spaceKey = this.input.keyboard.addKey('SPACE');
     this.escKey   = this.input.keyboard.addKey('ESC');
+
+    const _to = createTouchOverlay(this.game.canvas, 'menu', {
+      initialEyeOn: eyeTracking.isEnabled(),
+      onUp:         () => { this._navUp(); },
+      onDown:       () => { this._navDown(); },
+      onConfirm:    () => { this._select(); },
+      onBack:       () => { this.scene.start('LevelMenuScene'); },
+      onMenu:       () => { this.scene.start('MainMenuScene'); },
+      onToggleEye:  (el) => { syncEyeBtn(el, eyeTracking.toggle()); },
+      onCalibrate:  () => { /* calibration only available in-game */ },
+    });
+    this._touch = _to;
+    this.events.once('shutdown', () => this._touch?.destroy());
   }
 
   _getPreviewKey(localIdx) {
@@ -136,28 +151,38 @@ export class WorldMenuScene extends Phaser.Scene {
     } catch { /* ignore */ }
   }
 
+  _navUp() {
+    const prev = this._current, prevBack = this._backHighlight;
+    if (this._backHighlight) {
+      this._backHighlight = false;
+      this._current = Math.min(4, this._len - 1);
+    } else if (this._current >= 4) {
+      this._current -= 4;
+    }
+    this._updateUI(prev, prevBack);
+  }
+
+  _navDown() {
+    const prev = this._current, prevBack = this._backHighlight;
+    if (!this._backHighlight) {
+      const next = this._current + 4;
+      if (next < this._len) this._current = next;
+      else this._backHighlight = true;
+    }
+    this._updateUI(prev, prevBack);
+  }
+
   update() {
     const { JustDown } = Phaser.Input.Keyboard;
     const prevCurrent = this._current;
     const prevBack = this._backHighlight;
 
-    if (JustDown(this.escKey)) {
-      this.scene.start('LevelMenuScene');
-      return;
-    }
+    if (JustDown(this.escKey))                              { this.scene.start('LevelMenuScene'); return; }
+    if (JustDown(this.enterKey) || JustDown(this.spaceKey)) { this._select(); return; }
+    if (JustDown(this.cursors.up))   { this._navUp();   return; }
+    if (JustDown(this.cursors.down)) { this._navDown(); return; }
 
-    if (JustDown(this.enterKey) || JustDown(this.spaceKey)) {
-      this._select();
-      return;
-    }
-
-    if (this._backHighlight) {
-      if (JustDown(this.cursors.up)) {
-        this._backHighlight = false;
-        this._current = Math.min(4, this._len - 1); // top of row 2
-        this._updateUI(prevCurrent, prevBack);
-      }
-    } else {
+    if (!this._backHighlight) {
       if (JustDown(this.cursors.left)) {
         const row = Math.floor(this._current / 4);
         const col = this._current % 4;
@@ -173,23 +198,6 @@ export class WorldMenuScene extends Phaser.Scene {
         if (candidate < this._len) this._current = candidate;
         else this._current = row * 4;
         this._updateUI(prevCurrent, prevBack);
-      } else if (JustDown(this.cursors.up)) {
-        if (this._current >= 4) {
-          this._current -= 4;
-          this._updateUI(prevCurrent, prevBack);
-        }
-      } else if (JustDown(this.cursors.down)) {
-        const next = this._current + 4;
-        if (next < this._len) {
-          this._current = next;
-          this._updateUI(prevCurrent, prevBack);
-        } else if (this._current < 4) {
-          this._backHighlight = true;
-          this._updateUI(prevCurrent, prevBack);
-        } else {
-          this._backHighlight = true;
-          this._updateUI(prevCurrent, prevBack);
-        }
       }
     }
   }
