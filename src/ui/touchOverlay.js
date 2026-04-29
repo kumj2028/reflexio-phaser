@@ -44,10 +44,10 @@ export function createTouchOverlay(canvas, mode, callbacks = {}) {
   document.body.appendChild(wrap);
 
   // ---- Eye toggle + Calibrate — top-right, desktop only ----
-  const isMobile = window.matchMedia('(pointer: coarse)').matches;
+  const isMobileBrowser = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
   let eyeBtn = null;
 
-  if (!isMobile) {
+  if (!isMobileBrowser) {
     const eyeOn = callbacks.initialEyeOn ?? false;
     eyeBtn = _makeSmallBtn(
       eyeOn ? 'EYE: ON' : 'EYE: OFF',

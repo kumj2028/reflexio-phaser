@@ -75,15 +75,20 @@
   <div id="game"></div>
   <script type="module" src="/src/main.js"></script>
   <script>
-    // Request landscape lock via Screen Orientation API where supported.
-    function lockLandscape() {
+    // Enter fullscreen + lock landscape on first gesture.
+    function goFullscreen() {
+      const el = document.documentElement;
+      try {
+        (el.requestFullscreen?.() ?? el.webkitRequestFullscreen?.())
+          ?.catch(() => {});
+      } catch { /* unsupported */ }
       try {
         screen.orientation?.lock('landscape').catch(() => {});
       } catch { /* unsupported */ }
     }
-    document.addEventListener('DOMContentLoaded', lockLandscape);
-    document.addEventListener('click', lockLandscape, { once: true });
-    document.addEventListener('touchstart', lockLandscape, { once: true });
+    document.addEventListener('click',      goFullscreen, { once: true });
+    document.addEventListener('touchstart', goFullscreen, { once: true });
+    document.addEventListener('keydown',    goFullscreen, { once: true });
 
     // Block all browser touch gestures (scroll, zoom) globally.
     document.addEventListener('touchstart',  (e) => e.preventDefault(), { passive: false });
