@@ -20,10 +20,9 @@ const GAP     = 10;    // gap between A and B
 const BTN_GAP = 25;    // gap between D-pad bottom edge and its associated buttons
 
 // Vertical layout constants (offsets from 50vh)
-const DPAD_HALF = DPAD / 2;                               // 70
-const R_TOP_OFF = -((DPAD + BTN_GAP + BTN) / 2);         // -118.5
-const AB_TOP_OFF = R_TOP_OFF + DPAD + BTN_GAP;            // 46.5
-const MENU_TOP_OFF = DPAD_HALF + BTN_GAP;                 // 95
+const DPAD_HALF  = DPAD / 2;                // 70  — both D-pads centered at 50vh
+const AB_TOP_OFF = DPAD_HALF + BTN_GAP;     // 95  — A/B below right D-pad
+const MENU_TOP_OFF = DPAD_HALF + BTN_GAP;   // 95  — MENU below left D-pad
 
 export function createTouchOverlay(canvas, mode, callbacks = {}) {
   const topRightOffset = callbacks.topRightOffset ?? 8;
@@ -117,7 +116,7 @@ export function createTouchOverlay(canvas, mode, callbacks = {}) {
       if ((dir === 'd' || dir === 'dl' || dir === 'dr') && callbacks.onDown) callbacks.onDown();
     }
   });
-  rightDpad.style.cssText += `;position:fixed;left:calc(var(--rcx) - ${DPAD_HALF}px);top:calc(50vh + ${R_TOP_OFF}px);pointer-events:auto;`;
+  rightDpad.style.cssText += `;position:fixed;left:calc(var(--rcx) - ${DPAD_HALF}px);top:calc(50vh - ${DPAD_HALF}px);pointer-events:auto;`;
   wrap.appendChild(rightDpad);
 
   // A and B side by side below right D-pad
