@@ -77,7 +77,7 @@ export function createTouchOverlay(canvas, mode, callbacks = {}) {
       if (dir === 'l') state.left  = on;
       if (dir === 'r') state.right = on;
       if (dir === 'u') state.up    = on;
-      if (dir === 'd') state.down  = on;
+      if (dir === 'd' && on) state.grab = true;  // one-shot: toggle grab/release
     } else {
       if (!on) return;
       if (dir === 'u' && callbacks.onUp)   callbacks.onUp();
@@ -119,16 +119,18 @@ export function createTouchOverlay(canvas, mode, callbacks = {}) {
   rightDpad.style.cssText += `;position:fixed;left:calc(var(--rcx) - ${DPAD_HALF}px);top:calc(50vh - ${DPAD_HALF}px);pointer-events:auto;`;
   wrap.appendChild(rightDpad);
 
-  // A and B side by side below right D-pad
+  // A (jump) and B (reflect) side by side below right D-pad
   const aBtn = _makeBtn('A', '#336acc', () => {
-    if (mode === 'game') { state.reflect = true; }
+    if (mode === 'game') { state.up = true; }
     else if (callbacks.onConfirm) callbacks.onConfirm();
   });
+  aBtn.addEventListener('pointerup',     () => { if (mode === 'game') state.up = false; });
+  aBtn.addEventListener('pointercancel', () => { if (mode === 'game') state.up = false; });
   aBtn.style.cssText += `;position:fixed;left:calc(var(--rcx) - ${BTN + GAP / 2}px);top:calc(50vh + ${AB_TOP_OFF}px);pointer-events:auto;`;
   wrap.appendChild(aBtn);
 
   const bBtn = _makeBtn('B', '#cc3333', () => {
-    if (mode === 'game') { state.grab = true; }
+    if (mode === 'game') { state.reflect = true; }
     else if (callbacks.onBack) callbacks.onBack();
   });
   bBtn.style.cssText += `;position:fixed;left:calc(var(--rcx) + ${GAP / 2}px);top:calc(50vh + ${AB_TOP_OFF}px);pointer-events:auto;`;

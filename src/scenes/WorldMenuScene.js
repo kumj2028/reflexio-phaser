@@ -77,6 +77,12 @@ export class WorldMenuScene extends Phaser.Scene {
         const sp = this.add.image(pos.x, pos.y, thumbKey)
           .setOrigin(0.5)
           .setDisplaySize(center.s * THUMB_SIZE, center.s * THUMB_SIZE);
+        sp.setInteractive().on('pointerdown', () => {
+          if (this._current === i && !this._backHighlight) { this._select(); return; }
+          const prev = this._current, prevBack = this._backHighlight;
+          this._current = i; this._backHighlight = false;
+          this._updateUI(prev, prevBack);
+        });
         this._thumbs.push(sp);
       } else {
         this._thumbs.push(null);
@@ -93,6 +99,7 @@ export class WorldMenuScene extends Phaser.Scene {
     this._backText = this.add.text(backPos.x, backPos.y, '< Back', {
       color: '#eeeeee', fontFamily: 'monospace', fontSize: `${Math.round(center.s * 18)}px`
     }).setOrigin(0.5);
+    this._backText.setInteractive().on('pointerdown', () => { this.scene.start('LevelMenuScene'); });
 
     this._backHighlight = false;
 

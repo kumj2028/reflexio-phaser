@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { createTouchOverlay } from '../ui/touchOverlay.js';
 
 function makeToScreen(sw, sh) {
   const s = Math.min(sw / 650, sh / 650, 1);
@@ -48,6 +49,7 @@ export class ControlsScene extends Phaser.Scene {
       const key = i === this._current ? item.onKey : item.offKey;
       const pos = ts(325, y650);
       const sp = this.add.image(pos.x, pos.y, key).setOrigin(0.5).setScale(pos.s);
+      sp.setInteractive().on('pointerdown', () => { this._current = i; this._select(); });
       this._sprites.push(sp);
       y650 += (sp.height + padding650);
     }
@@ -56,6 +58,25 @@ export class ControlsScene extends Phaser.Scene {
     this.enterKey = this.input.keyboard.addKey('ENTER');
     this.spaceKey = this.input.keyboard.addKey('SPACE');
     this.escKey   = this.input.keyboard.addKey('ESC');
+
+    const _to = createTouchOverlay(this.game.canvas, 'menu', {
+      onUp:      () => { this._move(-1); },
+      onDown:    () => { this._move(1); },
+      onConfirm: () => { this._select(); },
+      onBack:    () => { this.scene.start('MainMenuScene'); },
+      onMenu:    () => { this.scene.start('MainMenuScene'); },
+    });
+    this.events.once('shutdown', () => _to.destroy());
+  }
+
+  _move(delta) {
+    const prev = this._current;
+    this._current = (this._current + delta + this._items.length) % this._items.length;
+    if (this._current !== prev) {
+      this._sprites[prev].setTexture(this._items[prev].offKey);
+      this._sprites[this._current].setTexture(this._items[this._current].onKey);
+      try { this.sound.play('click'); } catch { /* ignore */ }
+    }
   }
 
   _ensureBgm() {
@@ -71,23 +92,10 @@ export class ControlsScene extends Phaser.Scene {
     const { JustDown } = Phaser.Input.Keyboard;
     const prev = this._current;
 
-    if (JustDown(this.escKey)) {
-      this.scene.start('MainMenuScene');
-      return;
-    } else if (JustDown(this.cursors.up)) {
-      this._current = (this._current - 1 + this._items.length) % this._items.length;
-    } else if (JustDown(this.cursors.down)) {
-      this._current = (this._current + 1) % this._items.length;
-    } else if (JustDown(this.enterKey) || JustDown(this.spaceKey)) {
-      this._select();
-      return;
-    }
-
-    if (this._current !== prev) {
-      this._sprites[prev].setTexture(this._items[prev].offKey);
-      this._sprites[this._current].setTexture(this._items[this._current].onKey);
-      try { this.sound.play('click'); } catch { /* ignore */ }
-    }
+    if (JustDown(this.escKey))                              { this.scene.start('MainMenuScene'); return; }
+    if (JustDown(this.enterKey) || JustDown(this.spaceKey)) { this._select(); return; }
+    if (JustDown(this.cursors.up))   this._move(-1);
+    if (JustDown(this.cursors.down)) this._move(1);
   }
 
   _select() {

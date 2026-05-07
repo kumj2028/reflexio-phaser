@@ -58,6 +58,7 @@ export class MainMenuScene extends Phaser.Scene {
       const key = i === this._current ? item.onKey : item.offKey;
       const pos = ts(325, y650);
       const sp = this.add.image(pos.x, pos.y, key).setOrigin(0.5).setScale(pos.s);
+      sp.setInteractive().on('pointerdown', () => { this._current = i; this._select(); });
       this._sprites.push(sp);
       y650 += (sp.height + padding650);
     }

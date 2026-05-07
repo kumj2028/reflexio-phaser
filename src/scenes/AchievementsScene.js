@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { ACHIEVEMENTS, achievements } from '../state/AchievementState.js';
+import { createTouchOverlay } from '../ui/touchOverlay.js';
 
 function makeToScreen(sw, sh) {
   const s = Math.min(sw / 650, sh / 650, 1);
@@ -47,15 +48,18 @@ export class AchievementsScene extends Phaser.Scene {
 
     // Left / right arrows
     const lPos = ts(LEFT_ARR_X, LEFT_ARR_Y);
-    this.add.image(lPos.x, lPos.y, 'ach_left_arrow').setOrigin(0.5).setScale(lPos.s);
+    this.add.image(lPos.x, lPos.y, 'ach_left_arrow').setOrigin(0.5).setScale(lPos.s)
+      .setInteractive().on('pointerdown', () => this._move(-1));
 
     const rPos = ts(RIGHT_ARR_X, RIGHT_ARR_Y);
-    this.add.image(rPos.x, rPos.y, 'ach_right_arrow').setOrigin(0.5).setScale(rPos.s);
+    this.add.image(rPos.x, rPos.y, 'ach_right_arrow').setOrigin(0.5).setScale(rPos.s)
+      .setInteractive().on('pointerdown', () => this._move(1));
 
     // Main menu button
     const mPos = ts(MENU_X, MENU_Y);
     this._menuBtn = this.add.image(mPos.x, mPos.y, 'mainmenuOn')
       .setOrigin(0.5).setScale(mPos.s);
+    this._menuBtn.setInteractive().on('pointerdown', () => this.scene.start('MainMenuScene'));
 
     this._current = 0;
     this._refresh();
@@ -64,25 +68,34 @@ export class AchievementsScene extends Phaser.Scene {
     this.enterKey = this.input.keyboard.addKey('ENTER');
     this.spaceKey = this.input.keyboard.addKey('SPACE');
     this.escKey   = this.input.keyboard.addKey('ESC');
+
+    const _to = createTouchOverlay(this.game.canvas, 'menu', {
+      onUp:      () => { this._move(-1); },
+      onDown:    () => { this._move(1); },
+      onConfirm: () => { this.scene.start('MainMenuScene'); },
+      onBack:    () => { this.scene.start('MainMenuScene'); },
+      onMenu:    () => { this.scene.start('MainMenuScene'); },
+    });
+    this.events.once('shutdown', () => _to.destroy());
+  }
+
+  _move(delta) {
+    const prev = this._current;
+    this._current = (this._current + delta + ACHIEVEMENTS.length) % ACHIEVEMENTS.length;
+    if (this._current !== prev) {
+      this._refresh();
+      try { this.sound.play('click'); } catch { /* ignore */ }
+    }
   }
 
   update() {
     const { JustDown } = Phaser.Input.Keyboard;
 
     if (JustDown(this.escKey) || JustDown(this.enterKey) || JustDown(this.spaceKey)) {
-      this.scene.start('MainMenuScene');
-      return;
+      this.scene.start('MainMenuScene'); return;
     }
-    const prev = this._current;
-    if (JustDown(this.cursors.left) || JustDown(this.cursors.up)) {
-      this._current = (this._current - 1 + ACHIEVEMENTS.length) % ACHIEVEMENTS.length;
-    } else if (JustDown(this.cursors.right) || JustDown(this.cursors.down)) {
-      this._current = (this._current + 1) % ACHIEVEMENTS.length;
-    }
-    if (this._current !== prev) {
-      this._refresh();
-      try { this.sound.play('click'); } catch { /* ignore */ }
-    }
+    if (JustDown(this.cursors.left)  || JustDown(this.cursors.up))   this._move(-1);
+    if (JustDown(this.cursors.right) || JustDown(this.cursors.down)) this._move(1);
   }
 
   _refresh() {
