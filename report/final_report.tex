@@ -35,16 +35,16 @@ Spring 2026
 Alternative human-computer input modalities have long fascinated researchers and
 hobbyists alike. Moving beyond the conventional keyboard-and-mouse or gamepad
 paradigm opens the door to more accessible, expressive, or simply novel ways to
-interact with software. My interest in non-traditional game input began during
-my undergraduate studies, where I built a system for playing Pong using
-electroencephalography (EEG) signals recorded from a consumer headset
+interact with software. This interest in non-traditional game input began during
+the author's undergraduate studies, where a system for playing Pong using
+electroencephalography (EEG) signals recorded from a consumer headset was built
 \cite{eeg_pong}. That project demonstrated that exotic input channels can be
 made functional, but also highlighted the significant gap between
 ``technically works'' and ``pleasant to use.''
 
 This project revisits that question in a different context: gaze-based control
 for a puzzle platformer. The game chosen is \textit{Reflexio}, a tile-based
-puzzle platformer I originally wrote as an undergraduate course project in C\#
+puzzle platformer originally written as an undergraduate course project in C\#
 using the XNA/FNA framework \cite{reflexio_xna}. Reflexio's signature mechanic
 is \textit{reflection}: the player can mirror the entire level, or a subset of
 rows, columns, or diagonal bands, along a selectable line. Because choosing
@@ -94,7 +94,7 @@ Fitts's law \cite{fitts1954} predicts the time required to move a pointer to a
 target as a function of the distance to the target and its width:
 $T = a + b \log_2\!\left(1 + D/W\right)$. For gaze-based pointing, the
 effective ``width'' of a target is limited by tracker accuracy rather than
-target size, which severely penalises small or closely spaced targets. The
+target size, which severely penalizes small or closely spaced targets. The
 reflection-line indicators in Reflexio are relatively small, making gaze
 pointing challenging even in principle.
 
@@ -116,7 +116,7 @@ webcam accessed through the browser's \texttt{getUserMedia} API. It uses facial
 landmark detection to locate the eyes and trains a regression model (ridge
 regression by default) mapping eye-region image features to screen coordinates.
 Training data is collected implicitly as the user interacts with the page
-(click and cursor positions serve as ground-truth labels). No specialised
+(click and cursor positions serve as ground-truth labels). No specialized
 hardware is required, making it well suited for a web-deployed experiment.
 
 % ============================================================
@@ -125,17 +125,17 @@ hardware is required, making it well suited for a web-deployed experiment.
 
 The project proceeded in two phases.
 
-\textbf{Phase 1 -- Web port.} The original Reflexio codebase targets the
+\textbf{Phase 1: Web port.} The original Reflexio codebase targets the
 XNA/FNA desktop runtime and cannot run in a browser. The first task was
 therefore to produce a faithful web port. After evaluating several JavaScript
 game frameworks, Phaser 3 \cite{phaser} was selected for its built-in Matter.js
 physics engine, rich sprite and animation support, and active community. The
-port preserves all 53 published levels, the core reflection mechanic, player
+port preserves all published levels, the core reflection mechanic, player
 movement and physics, key/door/switch puzzles, and the main menu and level
 selection flow. Mobile touch controls were added later in response to user
 feedback (Section~\ref{sec:results}).
 
-\textbf{Phase 2 -- Gaze input for reflection selection.} The reflection-line
+\textbf{Phase 2: Gaze input for reflection selection.} The reflection-line
 selection sub-task was identified as the most suitable target for gaze input
 because it is a discrete choice among a small number of options (horizontal,
 vertical, or diagonal axes) and the Midas touch problem is naturally mitigated:
@@ -160,7 +160,7 @@ saccades.
 The port was implemented in JavaScript using Phaser 3 and bundled with Vite.
 The original C\# codebase used reflection (in the language sense) to
 instantiate game objects from XML level files; this was replicated in JavaScript
-via a class registry that maps XML tag names to constructors. All 64 level XML
+via a class registry that maps XML tag names to constructors. The level XML
 files from the original ship unchanged. Physics bodies are provided by
 Matter.js: walls and most objects use static rectangle bodies, the player uses
 a 20-vertex polygon approximating an ellipse (matching the original's
@@ -181,8 +181,17 @@ overlay providing virtual controls was added. The overlay uses Pointer Events
 screen size without JavaScript measurement. Two D-pads handle movement and
 reflection-line navigation; A and B buttons handle jump and reflect. The
 browser's Fullscreen API and Screen Orientation API are invoked on the first
-user gesture to maximise the playable area and lock landscape orientation on
+user gesture to maximize the playable area and lock landscape orientation on
 mobile devices.
+
+All menu items across every scene (main menu, level select, pause menu,
+controls, and achievements) were made directly tappable using Phaser's
+\texttt{setInteractive()} API. Tapping a menu item immediately activates it,
+matching the interaction model mobile users expect from native apps. The level
+select screen uses a two-tap convention: the first tap highlights a level and
+shows its preview image, and a second tap on the already-selected thumbnail
+starts the level. This prevents accidental launches from a stray touch while
+remaining responsive to deliberate input.
 
 \subsection{Eye-Tracking Integration}
 
@@ -194,8 +203,8 @@ tuned empirically to balance lag against noise reduction.
 
 The smoothed gaze point is compared each frame to a running baseline (an
 exponential moving average of recent gaze positions). When the displacement
-from the baseline exceeds a threshold---100 pixels horizontally or 60 pixels
-vertically---a saccade is registered and the corresponding reflection-line
+from the baseline exceeds a threshold (100 pixels horizontally or 60 pixels
+vertically), a saccade is registered and the corresponding reflection-line
 category is advanced. A 120-frame cooldown prevents multiple triggers from a
 single saccade. Outlier rejection discards any single-frame jump exceeding 300
 pixels, which typically corresponds to tracker loss or a blink rather than a
@@ -241,7 +250,7 @@ Switching from fixation-based to saccade-based selection significantly reduced
 the accuracy demands: the user need only produce a large-magnitude eye movement
 in the correct cardinal direction, rather than fixating a specific small target.
 In informal testing this was more reliable than fixation-based selection.
-However, the discretisation (horizontal saccade $\to$ cycle horizontal lines;
+However, the discretization (horizontal saccade $\to$ cycle horizontal lines;
 vertical saccade $\to$ cycle vertical lines) means the user must repeat the
 same saccade multiple times to step through several lines of the same
 orientation, which is fatiguing and inconsistent. The auto-cycling feature
@@ -290,14 +299,14 @@ gaze control. Nevertheless, even this limited use of gaze proved frustrating in
 practice, primarily due to calibration drift and the difficulty of producing
 consistent, repeatable saccades.
 
-Several limitations constrain the generalisability of these results. The
+Several limitations constrain the generalizability of these results. The
 evaluation was informal, with three participants, no control condition, and no
 quantitative performance metrics such as level completion time or error rate.
 A more rigorous study would include a within-subjects comparison of keyboard-only
 versus keyboard-plus-gaze conditions, objective performance measures, and a
 larger and more diverse participant pool. The port itself, while faithful in
 mechanics, has not been systematically validated against the original for
-physics fidelity across all 53 levels.
+physics fidelity across all levels.
 
 % ============================================================
 \section{Conclusion}
@@ -309,8 +318,8 @@ touch control support, and integrated webcam-based eye tracking for the
 reflection-line selection sub-task. The eye-tracking integration demonstrated
 that novelty of input modality does not imply usability: participants
 consistently found the gaze control more burdensome than the standard keyboard
-alternative. The technical limitations of consumer-grade webcam tracking---high
-noise, calibration drift, and sensitivity to ambient lighting---impose accuracy
+alternative. The technical limitations of consumer-grade webcam tracking (high
+noise, calibration drift, and sensitivity to ambient lighting) impose accuracy
 constraints that are difficult to overcome in software. The project reinforces
 a well-established principle in HCI: a new control scheme must improve the user
 experience in a measurable way; if the existing scheme works well, replacing it
