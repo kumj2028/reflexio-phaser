@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/reflexio-phaser/sw.js', { scope: '/reflexio-phaser/' })})}
