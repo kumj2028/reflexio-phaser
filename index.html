@@ -35,8 +35,10 @@
     /* Fullscreen toggle — top right corner, above every overlay */
     #fs-btn {
       position: fixed;
-      top: 8px;
-      right: 8px;
+      /* viewport-fit=cover means no automatic insets: in landscape the notch and
+         rounded corners sit exactly where this button goes, so inset manually. */
+      top: calc(8px + env(safe-area-inset-top, 0px));
+      right: calc(8px + env(safe-area-inset-right, 0px));
       z-index: 10001;
       width: 34px;
       height: 34px;
@@ -54,6 +56,12 @@
     }
     #fs-btn:hover { opacity: 1; }
     #fs-btn svg { width: 18px; height: 18px; display: block; }
+
+    /* Touch screens need a finger-sized target. */
+    @media (pointer: coarse) {
+      #fs-btn { width: 44px; height: 44px; opacity: 0.9; }
+      #fs-btn svg { width: 24px; height: 24px; }
+    }
     #fs-btn .fs-exit  { display: none; }
     body.is-fullscreen #fs-btn .fs-enter { display: none; }
     body.is-fullscreen #fs-btn .fs-exit  { display: block; }
@@ -143,12 +151,6 @@
     document.addEventListener('click',      goFullscreen, { once: true });
     document.addEventListener('touchstart', goFullscreen, { once: true });
     document.addEventListener('keydown',    goFullscreen, { once: true });
-
-    // Hide the button where the browser cannot go fullscreen at all (iOS Safari).
-    if (!document.documentElement.requestFullscreen &&
-        !document.documentElement.webkitRequestFullscreen) {
-      fsBtn.style.display = 'none';
-    }
 
     // pointerdown, not click: the global touch handlers below swallow clicks on
     // touch devices, and a fullscreen request needs a live user gesture.
