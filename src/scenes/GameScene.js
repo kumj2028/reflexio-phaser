@@ -1608,7 +1608,7 @@ export class GameScene extends Phaser.Scene {
   _createSaccadeDebugEl() {
     const el = document.createElement('div');
     el.style.cssText = [
-      'position:fixed', 'top:12px', 'right:12px',
+      'position:fixed', 'top:50px', 'right:12px',
       'background:rgba(0,0,0,0.75)', 'border:1px solid #444',
       'padding:6px', 'font-family:monospace', 'font-size:11px',
       'color:#fff', 'z-index:9998', 'pointer-events:none',

@@ -32,6 +32,32 @@
       touch-action: none;
     }
 
+    /* Fullscreen toggle — top right corner, above every overlay */
+    #fs-btn {
+      position: fixed;
+      top: 8px;
+      right: 8px;
+      z-index: 10001;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      background: rgba(50, 50, 50, 0.85);
+      border: 1.5px solid rgba(255, 255, 255, 0.35);
+      border-radius: 6px;
+      color: #fff;
+      opacity: 0.82;
+      cursor: pointer;
+      touch-action: none;
+    }
+    #fs-btn:hover { opacity: 1; }
+    #fs-btn svg { width: 18px; height: 18px; display: block; }
+    #fs-btn .fs-exit  { display: none; }
+    body.is-fullscreen #fs-btn .fs-enter { display: none; }
+    body.is-fullscreen #fs-btn .fs-exit  { display: block; }
+
     /* Portrait overlay — asks the user to rotate */
     #rotate-prompt {
       display: none;
@@ -61,6 +87,7 @@
     @media (orientation: portrait) {
       #rotate-prompt { display: flex; }
       #game          { visibility: hidden; }
+      #fs-btn        { display: none; }
     }
   </style>
 </head>
@@ -73,10 +100,28 @@
     <div>Please rotate your device<br>to landscape mode</div>
   </div>
   <div id="game"></div>
+  <div id="fs-btn" role="button" aria-label="Toggle fullscreen" title="Fullscreen">
+    <svg class="fs-enter" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 9V3h6M21 9V3h-6M3 15v6h6M21 15v6h-6"/>
+    </svg>
+    <svg class="fs-exit" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 3v6H3M15 3v6h6M9 21v-6H3M15 21v-6h6"/>
+    </svg>
+  </div>
   <script type="module" src="/src/main.js"></script>
   <script>
-    // Enter fullscreen + lock landscape on first gesture.
+    const fsBtn = document.getElementById('fs-btn');
+
+    function isFullscreen() {
+      return !!(document.fullscreenElement || document.webkitFullscreenElement);
+    }
+
+    // Fullscreen the whole document, not just the canvas: the D-pad and button
+    // overlays are DOM siblings of the canvas and must come along.
     function goFullscreen() {
+      if (isFullscreen()) return;
       const el = document.documentElement;
       try {
         (el.requestFullscreen?.() ?? el.webkitRequestFullscreen?.())
@@ -86,9 +131,40 @@
         screen.orientation?.lock('landscape').catch(() => {});
       } catch { /* unsupported */ }
     }
+
+    function exitFullscreen() {
+      try {
+        (document.exitFullscreen?.() ?? document.webkitExitFullscreen?.())
+          ?.catch(() => {});
+      } catch { /* unsupported */ }
+    }
+
+    // Enter fullscreen + lock landscape on first gesture.
     document.addEventListener('click',      goFullscreen, { once: true });
     document.addEventListener('touchstart', goFullscreen, { once: true });
     document.addEventListener('keydown',    goFullscreen, { once: true });
+
+    // Hide the button where the browser cannot go fullscreen at all (iOS Safari).
+    if (!document.documentElement.requestFullscreen &&
+        !document.documentElement.webkitRequestFullscreen) {
+      fsBtn.style.display = 'none';
+    }
+
+    // pointerdown, not click: the global touch handlers below swallow clicks on
+    // touch devices, and a fullscreen request needs a live user gesture.
+    fsBtn.addEventListener('pointerdown', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (isFullscreen()) exitFullscreen(); else goFullscreen();
+    }, { passive: false });
+
+    function syncFsBtn() {
+      document.body.classList.toggle('is-fullscreen', isFullscreen());
+      fsBtn.title = isFullscreen() ? 'Exit fullscreen' : 'Fullscreen';
+    }
+    document.addEventListener('fullscreenchange',       syncFsBtn);
+    document.addEventListener('webkitfullscreenchange', syncFsBtn);
+    syncFsBtn();
 
     // Block all browser touch gestures (scroll, zoom) globally.
     document.addEventListener('touchstart',  (e) => e.preventDefault(), { passive: false });

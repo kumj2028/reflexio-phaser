@@ -70,7 +70,7 @@ export class EyeTracker {
     window.webgazer.showVideoPreview(true);
     const container = document.getElementById('webgazerVideoContainer');
     if (container) {
-      container.style.cssText += ';position:fixed;top:4px;right:4px;width:160px;height:120px;opacity:0.85;z-index:9999;pointer-events:none;';
+      container.style.cssText += ';position:fixed;top:50px;right:4px;width:160px;height:120px;opacity:0.85;z-index:9999;pointer-events:none;';
     }
 
     this._active = true;

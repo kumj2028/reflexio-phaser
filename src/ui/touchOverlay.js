@@ -25,7 +25,7 @@ const AB_TOP_OFF = DPAD_HALF + BTN_GAP;     // 95  — A/B below right D-pad
 const MENU_TOP_OFF = DPAD_HALF + BTN_GAP;   // 95  — MENU below left D-pad
 
 export function createTouchOverlay(canvas, mode, callbacks = {}) {
-  const topRightOffset = callbacks.topRightOffset ?? 8;
+  const topRightOffset = callbacks.topRightOffset ?? 50;  // clears the 34px fullscreen button
 
   const state = {
     left: false, right: false, up: false, down: false,
