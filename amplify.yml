@@ -1,0 +1,18 @@
+# AWS Amplify Hosting build spec. Amplify reads this from the repo root on every
+# build, so console build settings are ignored while this file exists.
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci
+    build:
+      commands:
+        - BASE_PATH=/ npm run build
+  artifacts:
+    baseDirectory: dist
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*

@@ -2,7 +2,9 @@ import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
-  base: '/reflexio-phaser/',
+  // GitHub Pages serves the site under /reflexio-phaser/. Amplify serves it at the
+  // domain root and sets BASE_PATH=/ in amplify.yml.
+  base: process.env.BASE_PATH ?? '/reflexio-phaser/',
   root: '.',
   publicDir: 'public',
   server: {
